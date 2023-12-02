@@ -90,9 +90,9 @@ function App() {
   };
 
   const handleGameCreation = () => {
-    setPlayers(new Array(playerCount).fill(''));
-    setGameCreated(true);
-  };
+  setPlayers(new Array(playerCount).fill({ name: '', score: new Array(10).fill(0) }));
+  setGameCreated(true);
+};
 
   useEffect(() => {
     console.log('Game created:', gameCreated);
