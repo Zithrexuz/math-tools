@@ -80,9 +80,17 @@ function App() {
     setGameCreated(false);
   };
 
+  /*
   const handlePlayerCountChange = (event) => {
     console.log(event.target.value);
     setPlayerCount(event.target.value);
+  };
+  */
+
+  const handlePlayerCountChange = (event) => {
+    const count = event.target.value;
+    setPlayerCount(count);
+    setPlayers(new Array(count).fill({ name: '' }));
   };
 
   const handlePlayerNameChange = (index, event) => {
