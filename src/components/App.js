@@ -44,6 +44,7 @@ function App() {
 
 export default App;
 */
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Tabs from './Tabs';
@@ -83,7 +84,7 @@ function App() {
 
   const handlePlayerNameChange = (index, event) => {
     const newPlayers = [...players];
-    newPlayers[index] = event.target.value;
+    newPlayers[index].name = event.target.value;
     setPlayers(newPlayers);
   };
 
