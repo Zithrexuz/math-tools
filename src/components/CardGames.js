@@ -72,8 +72,7 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
 
   const handleGameStart = () => {
     onCreateGame();
-    //setGameStarted(true);
-    gameStarted(true);
+    setGameStarted(true);
   };
 
   useEffect(() => {
@@ -87,7 +86,7 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
       {gameStarted && (
         <>
           <input type="number" onChange={onPlayerCountChange} placeholder="Enter number of players" />
-          {players.map((player, index) => (
+          {gameStarted && players.map((player, index) => (
             <div key={index}>
               <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
               <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} />
