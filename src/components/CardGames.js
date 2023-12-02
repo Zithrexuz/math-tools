@@ -68,8 +68,8 @@ const Table = styled.table`
   margin-top: 20px;
 `;
 
-function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame }) {
-  const [gameStarted, setGameStarted] = useState(false);
+function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame, gameStarted, setGameStarted }) {
+  //const [gameStarted, setGameStarted] = useState(false);
 
 
   useEffect(() => {

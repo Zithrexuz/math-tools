@@ -73,6 +73,7 @@ function App() {
   const [players, setPlayers] = useState([]);
   const [playerCount, setPlayerCount] = useState(0);
   const [gameCreated, setGameCreated] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   const handleTabChange = (newTab) => {
     setTab(newTab);
@@ -115,6 +116,8 @@ function App() {
       <Tabs onChange={handleTabChange} gameCreated={gameCreated} />
       {tab === 'cardGames' && !gameCreated && (
         <CardGames
+          gameStarted={gameStarted}
+          setGameStarted={setGameStarted}
           players={players}
           onPlayerCountChange={handlePlayerCountChange}
           onPlayerNameChange={handlePlayerNameChange}
