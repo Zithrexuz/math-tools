@@ -90,9 +90,9 @@ function App() {
   const handlePlayerCountChange = (event) => {
     const count = event.target.value;
     setPlayerCount(count);
-    setPlayers(new Array(count).fill({ name: '' }));
+    setPlayers(new Array(count).fill().map(() => ({ name: '' })));
   };
-
+  
   const handlePlayerNameChange = (index, event) => {
     const newPlayers = [...players];
     newPlayers[index].name = event.target.value;
