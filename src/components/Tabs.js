@@ -27,8 +27,9 @@ const TabContainer = styled.div`
   padding: 10px 0;
 `;
 
+// 10px margin
 const TabButton = styled.button`
-  margin: 0 10px;
+  margin: 0 20px; 
   padding: 10px;
   border: none;
   border-radius: 5px;
