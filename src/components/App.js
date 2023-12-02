@@ -94,8 +94,12 @@ function App() {
 
   return (
     <AppContainer>
-      <Title>Math tools</Title>
-      <Subtitle>By Zith</Subtitle>
+      {tab === 'home' && (
+        <>
+          <Title>Math tools</Title>
+          <Subtitle>By Zith</Subtitle>
+        </>
+      )}
       <Tabs onChange={handleTabChange} gameCreated={gameCreated} />
       {tab === 'cardGames' && !gameCreated && (
         <CardGames
@@ -109,6 +113,7 @@ function App() {
     </AppContainer>
   );
 }
+
 
 export default App;
 
