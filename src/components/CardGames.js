@@ -67,7 +67,13 @@ const Table = styled.table`
 `;
 
 function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame }) {
+  const [gameStarted, setGameStarted] = useState(false);
   const [rounds, setRounds] = useState(Array(10).fill(Array(players.length).fill(0)));
+
+  const handleGameStart = () => {
+    onCreateGame();
+    setGameStarted(true);
+  };
 
   const handleScoreChange = (roundIndex, playerIndex, event) => {
     const newRounds = [...rounds];
@@ -78,8 +84,8 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
   return (
     <div>
       <Title>Point Controller</Title>
-      <CreateButton onClick={onCreateGame}>Create game</CreateButton>
-      {players.length > 0 && (
+      {!gameStarted && <CreateButton onClick={handleGameStart}>Create game</CreateButton>}
+      {gameStarted && (
         <>
           <input type="number" onChange={onPlayerCountChange} placeholder="Enter number of players" />
           {players.map((player, index) => (
