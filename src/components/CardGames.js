@@ -79,6 +79,8 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
     console.log('Game started:', gameStarted);
   }, [gameStarted]);
 
+  console.log(players);
+
   return (
     <div>
       <Title>Point Controller</Title>
