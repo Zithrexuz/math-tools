@@ -114,7 +114,7 @@ function App() {
         </>
       )}
       <Tabs onChange={handleTabChange} gameCreated={gameCreated} />
-      {tab === 'cardGames' && !gameCreated && (
+      {tab === 'cardGames' && ( //  && !gameCreated
         <CardGames
           gameStarted={gameStarted}
           setGameStarted={setGameStarted}
