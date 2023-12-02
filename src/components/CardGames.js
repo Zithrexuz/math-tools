@@ -71,7 +71,9 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
   const [gameStarted, setGameStarted] = useState(false);
 
   const handleGameStart = () => {
+    console.log('Before onCreateGame');
     onCreateGame();
+    console.log('After onCreateGame');
     setGameStarted(true);
   };
 
