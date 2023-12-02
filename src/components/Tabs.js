@@ -49,13 +49,11 @@ function Tabs({ onChange, gameCreated }) {
 
   return (
     <TabContainer>
-      <TabButton onClick={() => onChange('home')}>Home</TabButton>
-      <TabButton onClick={() => onChange('cardGames')}>Card Games</TabButton>
+      <TabButton onClick={() => handleTabChange('home')}>Home</TabButton>
+      <TabButton onClick={() => handleTabChange('cardGames')}>Card Games</TabButton>
       {/* Add your other tabs here */}
     </TabContainer>
   );
 }
 
 export default Tabs;
-
-
