@@ -31,6 +31,7 @@ export default CardGames;
 */
 
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { MdDelete } from 'react-icons/md';
 
@@ -74,6 +75,10 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
     setGameStarted(true);
     console.log('Game started:', gameStarted); // Add this line
   };
+
+  useEffect(() => {
+    console.log('Game started:', gameStarted);
+  }, [gameStarted]);
 
   return (
     <div>

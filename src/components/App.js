@@ -46,6 +46,7 @@ export default App;
 */
 
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import Tabs from './Tabs';
 import CardGames from './CardGames';
@@ -93,6 +94,10 @@ function App() {
     setGameCreated(true);
     console.log('Game created:', gameCreated); // Add this line
   };
+
+  useEffect(() => {
+    console.log('Game created:', gameCreated);
+  }, [gameCreated]);
 
   return (
     <AppContainer>
