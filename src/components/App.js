@@ -81,6 +81,7 @@ function App() {
   };
 
   const handlePlayerCountChange = (event) => {
+    console.log(event.target.value);
     setPlayerCount(event.target.value);
   };
 
