@@ -30,10 +30,10 @@ const TabContainer = styled.div`
 // 10px margin It's the spacing between tabs
 // border-radius: 5px
 const TabButton = styled.button`
-  margin: 0 10px; 
+  margin: 5 10px; 
   padding: 10px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #ddd;
   cursor: pointer;
 
