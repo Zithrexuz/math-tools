@@ -68,17 +68,10 @@ const Table = styled.table`
 
 function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame }) {
   const [gameStarted, setGameStarted] = useState(false);
-  const [rounds, setRounds] = useState(Array(10).fill(Array(players.length).fill(0)));
 
   const handleGameStart = () => {
     onCreateGame();
     setGameStarted(true);
-  };
-
-  const handleScoreChange = (roundIndex, playerIndex, event) => {
-    const newRounds = [...rounds];
-    newRounds[roundIndex][playerIndex] = event.target.value;
-    setRounds(newRounds);
   };
 
   return (
@@ -104,16 +97,7 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
               </tr>
             </thead>
             <tbody>
-              {rounds.map((round, roundIndex) => (
-                <tr key={roundIndex}>
-                  <td>{roundIndex + 1}</td>
-                  {round.map((score, playerIndex) => (
-                    <td key={playerIndex}>
-                      <input type="number" value={score} onChange={(event) => handleScoreChange(roundIndex, playerIndex, event)} />
-                    </td>
-                  ))}
-                </tr>
-              ))}
+              {/* Add your rounds here */}
             </tbody>
           </Table>
         </>
@@ -123,5 +107,3 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
 }
 
 export default CardGames;
-
-
