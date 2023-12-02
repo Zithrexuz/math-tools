@@ -96,7 +96,7 @@ function App() {
     <AppContainer>
       <Title>Math tools</Title>
       <Subtitle>By Zith</Subtitle>
-      <Tabs onChange={handleTabChange} />
+      <Tabs onChange={handleTabChange} gameCreated={gameCreated} />
       {tab === 'cardGames' && !gameCreated && (
         <CardGames
           players={players}

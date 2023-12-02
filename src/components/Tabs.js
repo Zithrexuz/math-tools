@@ -40,7 +40,13 @@ const TabButton = styled.button`
   }
 `;
 
-function Tabs({ onChange }) {
+function Tabs({ onChange, gameCreated }) {
+  const handleTabChange = (newTab) => {
+    if (!gameCreated) {
+      onChange(newTab);
+    }
+  };
+
   return (
     <TabContainer>
       <TabButton onClick={() => onChange('home')}>Home</TabButton>
