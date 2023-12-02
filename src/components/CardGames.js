@@ -73,7 +73,6 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
   const handleGameStart = () => {
     onCreateGame();
     setGameStarted(true);
-    console.log('Game started:', gameStarted); // Add this line
   };
 
   useEffect(() => {

@@ -92,7 +92,6 @@ function App() {
   const handleGameCreation = () => {
     setPlayers(new Array(playerCount).fill(''));
     setGameCreated(true);
-    console.log('Game created:', gameCreated); // Add this line
   };
 
   useEffect(() => {
