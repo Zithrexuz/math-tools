@@ -70,20 +70,23 @@ const Table = styled.table`
 function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame }) {
   const [gameStarted, setGameStarted] = useState(false);
 
+
+  useEffect(() => {
+    console.log('Game started2:', gameStarted);
+  }, [gameStarted]);
+
+
   const handleGameStart = () => {
     console.log('Before onCreateGame');
     onCreateGame();
     console.log('After onCreateGame');
     setGameStarted(true);
-    useEffect(() => {
-      console.log('Game started2:', gameStarted);
-    }, [gameStarted]);
     console.log('Game started:', gameStarted);
   };
 
-  useEffect(() => {
-    console.log('Game started:', gameStarted);
-  }, [gameStarted]);
+  //useEffect(() => {
+  //  console.log('Game started:', gameStarted);
+  //}, [gameStarted]);
 
   console.log(players);
 
