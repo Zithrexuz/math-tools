@@ -76,10 +76,16 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
     console.log('Game started2:', gameStarted);
   }, [gameStarted]);
 
+  useEffect(() => {
+    return () => {
+      console.log('CardGames component unmounted');
+    };
+  }, []);
+
 
   const handleGameStart = () => {
     console.log('Before onCreateGame');
-    onCreateGame();
+    onCreateGame(); // I think here it sets the gamecreated = true
     console.log('After onCreateGame');
     setGameStarted(true);
     console.log('Game started:', gameStarted);
