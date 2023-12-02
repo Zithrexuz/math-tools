@@ -58,13 +58,23 @@ const AppContainer = styled.div`
   background-color: #f5f5f5;
 `;
 
+const Title = styled.h1`
+  margin-bottom: 20px;
+`;
+
+const Subtitle = styled.h2`
+  margin-bottom: 40px;
+`;
+
 function App() {
   const [tab, setTab] = useState('home');
   const [players, setPlayers] = useState([]);
   const [playerCount, setPlayerCount] = useState(0);
+  const [gameCreated, setGameCreated] = useState(false);
 
   const handleTabChange = (newTab) => {
     setTab(newTab);
+    setGameCreated(false);
   };
 
   const handlePlayerCountChange = (event) => {
@@ -79,12 +89,15 @@ function App() {
 
   const handleGameCreation = () => {
     setPlayers(new Array(playerCount).fill(''));
+    setGameCreated(true);
   };
 
   return (
     <AppContainer>
+      <Title>Math tools</Title>
+      <Subtitle>By Zith</Subtitle>
       <Tabs onChange={handleTabChange} />
-      {tab === 'cardGames' && (
+      {tab === 'cardGames' && !gameCreated && (
         <CardGames
           players={players}
           onPlayerCountChange={handlePlayerCountChange}
