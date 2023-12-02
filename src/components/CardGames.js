@@ -30,7 +30,7 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
 export default CardGames;
 */
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdDelete } from 'react-icons/md';
 
@@ -62,34 +62,60 @@ const DeleteButton = styled(MdDelete)`
   cursor: pointer;
 `;
 
+const Table = styled.table`
+  margin-top: 20px;
+`;
+
 function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame }) {
+  const [rounds, setRounds] = useState(Array(10).fill(Array(players.length).fill(0)));
+
+  const handleScoreChange = (roundIndex, playerIndex, event) => {
+    const newRounds = [...rounds];
+    newRounds[roundIndex][playerIndex] = event.target.value;
+    setRounds(newRounds);
+  };
+
   return (
     <div>
       <Title>Point Controller</Title>
       <CreateButton onClick={onCreateGame}>Create game</CreateButton>
-      <input type="number" onChange={onPlayerCountChange} placeholder="Enter number of players" />
-      {players.map((player, index) => (
-        <div key={index}>
-          <PlayerInput type="text" value={player} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
-          <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} />
-        </div>
-      ))}
-      <table>
-        <thead>
-          <tr>
-            <th>Round</th>
-            {players.map((player, index) => (
-              <th key={index}>{player}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {/* Add your rounds here */}
-        </tbody>
-      </table>
+      {players.length > 0 && (
+        <>
+          <input type="number" onChange={onPlayerCountChange} placeholder="Enter number of players" />
+          {players.map((player, index) => (
+            <div key={index}>
+              <PlayerInput type="text" value={player} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
+              <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} />
+            </div>
+          ))}
+          <Table>
+            <thead>
+              <tr>
+                <th>Round</th>
+                {players.map((player, index) => (
+                  <th key={index}>{player}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rounds.map((round, roundIndex) => (
+                <tr key={roundIndex}>
+                  <td>{roundIndex + 1}</td>
+                  {round.map((score, playerIndex) => (
+                    <td key={playerIndex}>
+                      <input type="number" value={score} onChange={(event) => handleScoreChange(roundIndex, playerIndex, event)} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </>
+      )}
     </div>
   );
 }
 
 export default CardGames;
+
 
