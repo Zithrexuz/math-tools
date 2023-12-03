@@ -70,9 +70,11 @@ const Subtitle = styled.h2`
 function App() {
   const [tab, setTab] = useState('home');
   const [players, setPlayers] = useState([]);
+  const [gameCreated, setGameCreated] = useState(false);
 
   const handleTabChange = (newTab) => {
     setTab(newTab);
+    setGameCreated(false);
   };
 
   const handlePlayerNameChange = (index, event) => {
@@ -89,12 +91,15 @@ function App() {
           <Subtitle>By Zith</Subtitle>
         </>
       )}
-      <Tabs onChange={handleTabChange} />
+      <Tabs onChange={handleTabChange} gameCreated={gameCreated} />
       {tab === 'cardGames' && (
         <CardGames
           players={players}
           onPlayerNameChange={handlePlayerNameChange}
-          onCreatePlayers={(count) => setPlayers(new Array(count).fill({ name: '' }))}
+          onCreatePlayers={(count) => {
+            setPlayers(new Array(count).fill({ name: '' }));
+            setGameCreated(true);
+          }}
         />
       )}
     </AppContainer>
@@ -102,5 +107,3 @@ function App() {
 }
 
 export default App;
-
-
