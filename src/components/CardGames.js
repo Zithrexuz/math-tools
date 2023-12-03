@@ -111,7 +111,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   */
 
   const handleScoreSubmit = () => {
-    if (currentScore && currentScore % 5 === 0 && currentRoundIndex < 10) { // Check if the input field is not empty, the number is a multiple of 5, and there are more rounds
+    if (currentScore && currentScore % 5 === 0 && currentRoundIndex <= 10) { // Check if the input field is not empty, the number is a multiple of 5, and there are more rounds
       const newScores = [...scores];
       newScores[currentPlayerIndex][currentRoundIndex] = currentScore; // Update the score for the current player
       setScores(newScores);
