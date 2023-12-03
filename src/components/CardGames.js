@@ -66,25 +66,30 @@ const DeleteButton = styled(MdDelete)`
 
 function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [playerCount, setPlayerCount] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
+
+  const handleCreatePlayers = () => {
+    onCreatePlayers(playerCount);
+    setGameStarted(true);
+  };
 
   return (
     <div>
       <Title>Point Controller</Title>
-      <CreateButton onClick={() => onCreatePlayers(playerCount)}>Create game</CreateButton>
-      <input type="number" onChange={(event) => setPlayerCount(event.target.value)} placeholder="Enter number of players" />
-      {players.map((player, index) => (
-        <div key={index}>
-          {index < playerCount && (
-            <>
+      {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
+      {gameStarted && (
+        <>
+          <input type="number" onChange={(event) => setPlayerCount(event.target.value)} placeholder="Enter number of players" />
+          {players.map((player, index) => (
+            <div key={index}>
               <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
               <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} />
-            </>
-          )}
-        </div>
-      ))}
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }
 
 export default CardGames;
-
