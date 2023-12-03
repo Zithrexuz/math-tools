@@ -55,6 +55,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [gameStarted, setGameStarted] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+  const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
   const [currentScore, setCurrentScore] = useState('');
 
   const handleCreatePlayers = () => {
@@ -93,10 +94,15 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const handleScoreSubmit = () => {
     if (currentScore % 5 === 0) { // Check if the number is a multiple of 5
       const newScores = [...scores];
-      newScores[currentPlayerIndex][0] = currentScore; // Update the score for the current player
+      newScores[currentPlayerIndex][currentRoundIndex] = currentScore; // Update the score for the current player
       setScores(newScores);
       setCurrentScore(''); // Reset the current score
-      setCurrentPlayerIndex(currentPlayerIndex + 1); // Move to the next player
+      if (currentPlayerIndex < playerCount - 1) {
+        setCurrentPlayerIndex(currentPlayerIndex + 1); // Move to the next player
+      } else {
+        setCurrentPlayerIndex(0); // Reset to the first player
+        setCurrentRoundIndex(currentRoundIndex + 1); // Move to the next round
+      }
     }
   };
 
@@ -123,6 +129,26 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
           <input type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />
           <button onClick={handleScoreSubmit}>Submit</button>
           <Table>
+          <thead>
+            <tr>
+              <Th>Round</Th>
+              {players.map((player, index) => (
+                <Th key={index}>{player.name}</Th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 10 }, (_, i) => (
+              <tr key={i}>
+                <Td>{i + 1}</Td>
+                {players.map((player, index) => (
+                  <Td key={index}>
+                    <input type="number" step="5" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} />
+                  </Td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
             {/* ... rest of your table code ... */}
           </Table>
         </>
