@@ -35,7 +35,20 @@ const DeleteButton = styled(MdDelete)`
 
 const Table = styled.table`
   margin-top: 20px;
+  border-collapse: collapse; /* This will ensure that borders from adjacent cells are combined into a single border */
 `;
+
+const Th = styled.th`
+  border: 1px solid #000; /* This adds a border to your table header cells */
+  padding: 10px; /* Add some padding so content isn't right up against the border */
+`;
+
+const Td = styled.td`
+  border: 1px solid #000; /* This adds a border to your table data cells */
+  padding: 10px; /* Add some padding so content isn't right up against the border */
+`;
+
+
 
 function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [playerCount, setPlayerCount] = useState(0);
@@ -73,29 +86,29 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
         </>
       )}
       {showTable && (
-        <Table>
-          <thead>
-            <tr>
-              <th>Round</th>
+      <Table>
+        <thead>
+          <tr>
+            <Th>Round</Th>
+            {players.map((player, index) => (
+              <Th key={index}>{player.name}</Th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: 10 }, (_, i) => (
+            <tr key={i}>
+              <Td>{i + 1}</Td>
               {players.map((player, index) => (
-                <th key={index}>{player.name}</th>
+                <Td key={index}>-</Td>
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {Array.from({ length: 10 }, (_, i) => (
-              <tr key={i}>
-                <td>{i + 1}</td>
-                {players.map((player, index) => (
-                  <td key={index}>-</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
-    </div>
-  );
+          ))}
+        </tbody>
+      </Table>
+    )}
+  </div>
+);
 }
       {/*}
       {showTable && (
