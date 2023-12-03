@@ -104,7 +104,7 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
       {gameStarted && (
         <>
           <input type="number" onChange={onPlayerCountChange} placeholder="Enter number of players" />
-          {players.map((player, index) => (
+          {gameCreated && players.map((player, index) => (
             <div key={index}>
               <input type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> {/* <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> */}
               <button size={20} onClick={() => onPlayerNameChange(index, '')} /> {/* <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} /> */}
