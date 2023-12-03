@@ -79,7 +79,7 @@ function App() {
 
   const handlePlayerNameChange = (index, event) => {
     const newPlayers = [...players];
-    newPlayers[index].name = event.target.value;
+    newPlayers[index] = { name: event.target.value };
     setPlayers(newPlayers);
   };
 

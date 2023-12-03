@@ -70,14 +70,12 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
-    console.log('Game started:', gameStarted);
   };
 
   const handlePlayerCountChange = (event) => {
-    setPlayerCount(event.target.value);
-    onCreatePlayers(event.target.value);
-    console.log('Player count:', playerCount);
-    console.log(event.target.value);
+    const count = Math.min(event.target.value, 15); // Limit the number of players to 15
+    setPlayerCount(count);
+    onCreatePlayers(count);
   };
 
   return (
