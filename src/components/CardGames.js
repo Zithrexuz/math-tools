@@ -76,6 +76,32 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
         <Table>
           <thead>
             <tr>
+              <th>Round</th>
+              {players.map((player, index) => (
+                <th key={index}>{player.name}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 10 }, (_, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                {players.map((player, index) => (
+                  <td key={index}>-</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </div>
+  );
+}
+      {/*}
+      {showTable && (
+        <Table>
+          <thead>
+            <tr>
               <th>Player</th>
               {Array.from({ length: 10 }, (_, i) => (
                 <th key={i}>Round {i + 1}</th>
@@ -97,5 +123,6 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     </div>
   );
 }
+*/}
 
 export default CardGames;
