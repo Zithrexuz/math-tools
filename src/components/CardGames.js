@@ -70,11 +70,14 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
+    console.log('Game started:', gameStarted);
   };
 
   const handlePlayerCountChange = (event) => {
     setPlayerCount(event.target.value);
     onCreatePlayers(event.target.value);
+    console.log('Player count:', playerCount);
+    console.log(event.target.value);
   };
 
   return (
