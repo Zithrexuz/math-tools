@@ -64,9 +64,15 @@ const DeleteButton = styled(MdDelete)`
   cursor: pointer;
 `;
 
+
+const Table = styled.table`
+  margin-top: 20px;
+`;
+
 function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+  const [showTable, setShowTable] = useState(false);
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -78,11 +84,15 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     onCreatePlayers(count);
   };
 
+  const handleShowTable = () => {
+    setShowTable(true);
+  };
+
   return (
     <div>
       <Title>Point Controller</Title>
       {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
-      {gameStarted && (
+      {gameStarted && !showTable && (
         <>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
@@ -91,7 +101,30 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
               <DeleteButton size={20} onClick={() => onPlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
+          <button onClick={handleShowTable}>Go to table</button>
         </>
+      )}
+      {showTable && (
+        <Table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              {Array.from({ length: 10 }, (_, i) => (
+                <th key={i}>Round {i + 1}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {players.map((player, index) => (
+              <tr key={index}>
+                <td>{player.name}</td>
+                {Array.from({ length: 10 }, (_, i) => (
+                  <td key={i}>-</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       )}
     </div>
   );
