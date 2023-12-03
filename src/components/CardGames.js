@@ -32,7 +32,7 @@ export default CardGames;
 
 //import React, { useState } from 'react';
 //import { useEffect } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdDelete } from 'react-icons/md';
 
