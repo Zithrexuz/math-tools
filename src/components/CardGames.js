@@ -54,6 +54,8 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [showTable, setShowTable] = useState(false);
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+  const [currentScore, setCurrentScore] = useState('');
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -77,10 +79,25 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     setScores(Array(playerCount).fill().map(() => Array(10).fill('')));
   }, [playerCount]);
 
+  /*
   const handleScoreChange = (playerIndex, roundIndex, event) => {
     const newScores = [...scores];
     newScores[playerIndex][roundIndex] = event.target.value;
     setScores(newScores);
+  };
+  */
+  const handleScoreChange = (event) => {
+    setCurrentScore(event.target.value);
+  };
+
+  const handleScoreSubmit = () => {
+    if (currentScore % 5 === 0) { // Check if the number is a multiple of 5
+      const newScores = [...scores];
+      newScores[currentPlayerIndex][0] = currentScore; // Update the score for the current player
+      setScores(newScores);
+      setCurrentScore(''); // Reset the current score
+      setCurrentPlayerIndex(currentPlayerIndex + 1); // Move to the next player
+    }
   };
 
   
@@ -101,6 +118,19 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
           <button onClick={handleShowTable}>Go to table</button>
         </>
       )}
+      {showTable && (
+        <>
+          <input type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />
+          <button onClick={handleScoreSubmit}>Submit</button>
+          <Table>
+            {/* ... rest of your table code ... */}
+          </Table>
+        </>
+      )}
+    </div>
+  );
+}
+      {/* Latest version
       {showTable && (
         <Table>
           <thead>
@@ -128,6 +158,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     </div>
   );
 }
+*/}
       {/*}
       {showTable && (
         <Table>
