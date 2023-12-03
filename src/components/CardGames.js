@@ -68,8 +68,9 @@ const Table = styled.table`
   margin-top: 20px;
 `;
 
-function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame, gameStarted, setGameStarted, gameCreated }) {
+function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame, gameStarted, setGameStarted }) {
   //const [gameStarted, setGameStarted] = useState(false);
+  const [playerCount, setPlayerCount] = useState(0);
 
 
   useEffect(() => {
@@ -91,25 +92,49 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
     //console.log('Game started:', gameStarted);
   };
 
+  const handlePlayersCreation = () => {
+    setPlayers(new Array(playerCount).fill().map(() => ({ name: '', score: new Array(10).fill(0) })));
+    setGameStarted(true);
+  };
+
   //useEffect(() => {
   //  console.log('Game started:', gameStarted);
   //}, [gameStarted]);
 
   console.log(players);
 
+  /*
   return (
     <div>
       <Title>Point Controller</Title>
-      {!gameCreated && <CreateButton onClick={handleGameStart}>Create game</CreateButton>}
-      {gameCreated && (
+      {!gameStarted && <CreateButton onClick={handleGameStart}>Create game</CreateButton>}
+      {gameStarted && (
         <>
           <input type="number" onChange={onPlayerCountChange} placeholder="Enter number of players" />
           {players.map((player, index) => (
             <div key={index}>
-              <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> {/* <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> */}
-              <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} /> {/* <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} /> */}
+              <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> {/* <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> //}
+              <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} /> {/* <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} /> //}
             </div>
           ))}
+          */
+  return (
+    <div>
+      <Title>Point Controller</Title>
+      {!gameStarted && <CreateButton onClick={handleGameStart}>Create game</CreateButton>}
+      {gameCreated && !gameStarted && (
+        <>
+          <input type="number" onChange={(event) => setPlayerCount(event.target.value)} placeholder="Enter number of players" />
+          <button onClick={handlePlayersCreation}>Enter Player Names</button>
+        </>
+      )}
+      {gameStarted && players.map((player, index) => (
+        <div key={index}>
+          <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
+          <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} />
+        </div>
+      ))}
+      {/* }
           <Table>
             <thead>
               <tr>
@@ -120,11 +145,12 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
               </tr>
             </thead>
             <tbody>
-              {/* Add your rounds here */}
+              {/* Add your rounds here //}
             </tbody>
           </Table>
         </>
       )}
+      {*/}
     </div>
   );
 }

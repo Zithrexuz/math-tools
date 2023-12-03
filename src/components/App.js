@@ -71,7 +71,7 @@ const Subtitle = styled.h2`
 function App() {
   const [tab, setTab] = useState('home');
   const [players, setPlayers] = useState([]);
-  const [playerCount, setPlayerCount] = useState(0);
+  //const [playerCount, setPlayerCount] = useState(0);
   const [gameCreated, setGameCreated] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -109,7 +109,7 @@ function App() {
   };
   */
   const handleGameCreation = () => {
-    setPlayers(new Array(playerCount).fill().map(() => ({ name: '', score: new Array(10).fill(0) })));
+    //setPlayers(new Array(playerCount).fill().map(() => ({ name: '', score: new Array(10).fill(0) })));
     setGameCreated(true);
   };
   
