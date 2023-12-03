@@ -1,6 +1,6 @@
 //import React, { useState } from 'react';
 //import { useEffect } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { MdDelete } from 'react-icons/md';
 
@@ -71,6 +71,11 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
 
   // Add a new state to store the scores
   const [scores, setScores] = useState(Array(playerCount).fill().map(() => Array(10).fill('')));
+
+  // Update scores state when playerCount changes
+  useEffect(() => {
+    setScores(Array(playerCount).fill().map(() => Array(10).fill('')));
+  }, [playerCount]);
 
   const handleScoreChange = (playerIndex, roundIndex, event) => {
     const newScores = [...scores];
