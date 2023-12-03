@@ -78,17 +78,9 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   }, [playerCount]);
 
   const handleScoreChange = (playerIndex, roundIndex, event) => {
-    /*
     const newScores = [...scores];
     newScores[playerIndex][roundIndex] = event.target.value;
     setScores(newScores);
-    */
-    const value = event.target.value;
-    if (value % 5 === 0) { // Check if the number is a multiple of 5
-      const newScores = [...scores];
-      newScores[playerIndex][roundIndex] = value;
-      setScores(newScores);
-    }
   };
 
   
