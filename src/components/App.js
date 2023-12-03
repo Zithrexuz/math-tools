@@ -46,7 +46,6 @@ export default App;
 */
 
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import Tabs from './Tabs';
 import CardGames from './CardGames';
@@ -71,52 +70,16 @@ const Subtitle = styled.h2`
 function App() {
   const [tab, setTab] = useState('home');
   const [players, setPlayers] = useState([]);
-  //const [playerCount, setPlayerCount] = useState(0);
-  const [gameCreated, setGameCreated] = useState(false);
-  const [gameStarted, setGameStarted] = useState(false);
 
   const handleTabChange = (newTab) => {
     setTab(newTab);
-    setGameCreated(false);
   };
 
-  
-  const handlePlayerCountChange = (event) => {
-    console.log(event.target.value);
-    setPlayerCount(event.target.value);
-  };
-  
-  /*
-  const handlePlayerCountChange = (event) => {
-    const count = event.target.value;
-    setPlayerCount(count);
-    //setPlayers(new Array(count).fill().map(() => ({ name: '' })));
-    const newPlayers = new Array(count).fill().map(() => ({ name: '' }));
-    setPlayers(newPlayers);
-    console.log(newPlayers);
-  };
-  */
-  
   const handlePlayerNameChange = (index, event) => {
     const newPlayers = [...players];
     newPlayers[index].name = event.target.value;
     setPlayers(newPlayers);
   };
-  /*
-  const handleGameCreation = () => {
-    setPlayers(new Array(playerCount).fill({ name: '', score: new Array(10).fill(0) }));
-    setGameCreated(true);
-  };
-  */
-  const handleGameCreation = () => {
-    //setPlayers(new Array(playerCount).fill().map(() => ({ name: '', score: new Array(10).fill(0) })));
-    setGameCreated(true);
-  };
-  
-
-  useEffect(() => {
-    console.log('Game created:', gameCreated);
-  }, [gameCreated]);
 
   return (
     <AppContainer>
@@ -126,22 +89,18 @@ function App() {
           <Subtitle>By Zith</Subtitle>
         </>
       )}
-      <Tabs onChange={handleTabChange} gameCreated={gameCreated} />
-      {tab === 'cardGames' && ( //  && !gameCreated
+      <Tabs onChange={handleTabChange} />
+      {tab === 'cardGames' && (
         <CardGames
-          gameStarted={gameStarted}
-          setGameStarted={setGameStarted}
           players={players}
-          onPlayerCountChange={handlePlayerCountChange}
           onPlayerNameChange={handlePlayerNameChange}
-          onCreateGame={handleGameCreation}
+          onCreatePlayers={(count) => setPlayers(new Array(count).fill({ name: '' }))}
         />
       )}
-      {/* Add your other tab components here */}
     </AppContainer>
   );
 }
 
-
 export default App;
+
 
