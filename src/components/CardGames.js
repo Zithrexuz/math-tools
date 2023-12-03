@@ -68,7 +68,7 @@ const Table = styled.table`
   margin-top: 20px;
 `;
 
-function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame, gameStarted, setGameStarted }) {
+function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateGame, gameStarted, setGameStarted, gameCreated }) {
   //const [gameStarted, setGameStarted] = useState(false);
 
 
@@ -100,11 +100,11 @@ function CardGames({ players, onPlayerCountChange, onPlayerNameChange, onCreateG
   return (
     <div>
       <Title>Point Controller</Title>
-      {!gameStarted && <CreateButton onClick={handleGameStart}>Create game</CreateButton>}
-      {gameStarted && (
+      {!gameCreated && <CreateButton onClick={handleGameStart}>Create game</CreateButton>}
+      {gameCreated && (
         <>
           <input type="number" onChange={onPlayerCountChange} placeholder="Enter number of players" />
-          {gameStarted && players.map((player, index) => (
+          {players.map((player, index) => (
             <div key={index}>
               <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> {/* <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> */}
               <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} /> {/* <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} /> */}
