@@ -79,7 +79,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
       {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
       {gameStarted && (
         <>
-          <input type="number" onChange={(event) => setPlayerCount(event.target.value)} placeholder="Enter number of players" />
+          <input type="number" min="1" onChange={(event) => setPlayerCount(event.target.value)} onBlur={handleCreatePlayers} placeholder="Enter number of players" />
           {players.map((player, index) => (
             <div key={index}>
               <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
