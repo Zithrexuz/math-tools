@@ -69,6 +69,16 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     setShowTable(true);
   };
 
+  // Add a new state to store the scores
+  const [scores, setScores] = useState(Array(playerCount).fill().map(() => Array(10).fill('')));
+
+  const handleScoreChange = (playerIndex, roundIndex, event) => {
+    const newScores = [...scores];
+    newScores[playerIndex][roundIndex] = event.target.value;
+    setScores(newScores);
+  };
+
+
   return (
     <div>
       <Title>Point Controller</Title>
@@ -86,29 +96,31 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
         </>
       )}
       {showTable && (
-      <Table>
-        <thead>
-          <tr>
-            <Th>Round</Th>
-            {players.map((player, index) => (
-              <Th key={index}>{player.name}</Th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Array.from({ length: 10 }, (_, i) => (
-            <tr key={i}>
-              <Td>{i + 1}</Td>
+        <Table>
+          <thead>
+            <tr>
+              <Th>Round</Th>
               {players.map((player, index) => (
-                <Td key={index}>-</Td>
+                <Th key={index}>{player.name}</Th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    )}
-  </div>
-);
+          </thead>
+          <tbody>
+            {Array.from({ length: 10 }, (_, i) => (
+              <tr key={i}>
+                <Td>{i + 1}</Td>
+                {players.map((player, index) => (
+                  <Td key={index}>
+                    <input type="number" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} />
+                  </Td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </div>
+  );
 }
       {/*}
       {showTable && (
