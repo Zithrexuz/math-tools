@@ -69,10 +69,6 @@ const Table = styled.table`
   margin-top: 20px;
 `;
 
-const PointInput = styled.input`
-  width: 50px;
-`;
-
 function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
@@ -88,21 +84,15 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     onCreatePlayers(count);
   };
 
-  const handlePlayerScoreChange = (playerIndex, roundIndex, event) => {
-    const newPlayers = [...players];
-    newPlayers[playerIndex].score[roundIndex] = event.target.value;
-    onPlayerNameChange(playerIndex, { target: { value: newPlayers[playerIndex].name } });
+  const handleShowTable = () => {
+    setShowTable(true);
   };
-
-  //const handleShowTable = () => {
-  //  setShowTable(true);
-  //};
 
   return (
     <div>
       <Title>Point Controller</Title>
       {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
-      {gameStarted && (
+      {gameStarted && !showTable && (
         <>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
@@ -111,29 +101,30 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
               <DeleteButton size={20} onClick={() => onPlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
-          <Table>
-            <thead>
-              <tr>
-                <th>Round</th>
-                {players.map((_, index) => (
-                  <th key={index}>Player {index + 1}</th>
+          <button onClick={handleShowTable}>Go to table</button>
+        </>
+      )}
+      {showTable && (
+        <Table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              {Array.from({ length: 10 }, (_, i) => (
+                <th key={i}>Round {i + 1}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {players.map((player, index) => (
+              <tr key={index}>
+                <td>{player.name}</td>
+                {Array.from({ length: 10 }, (_, i) => (
+                  <td key={i}>-</td>
                 ))}
               </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: 10 }, (_, round) => (
-                <tr key={round}>
-                  <td>{round + 1}</td>
-                  {players.map((player, index) => (
-                    <td key={index}>
-                      <PointInput type="number" min="0" value={player.score[round]} onChange={(event) => handlePlayerScoreChange(index, round, event)} />
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </>
+            ))}
+          </tbody>
+        </Table>
       )}
     </div>
   );
