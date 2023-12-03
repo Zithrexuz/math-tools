@@ -113,7 +113,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const handleScoreSubmit = () => {
     console.log(currentRoundIndex);
     if (currentScore && currentScore % 5 === 0 && currentRoundIndex < 10 && currentPlayerIndex < playerCount) { // Check if the input field is not empty, the number is a multiple of 5, there are more rounds, and there are more players
-      console.log(currentRoundIndex);
+      //console.log(currentRoundIndex);
       const newScores = [...scores];
       newScores[currentPlayerIndex][currentRoundIndex] = currentScore; // Update the score for the current player
       setScores(newScores);
@@ -122,7 +122,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
         setCurrentPlayerIndex(currentPlayerIndex + 1); // Move to the next player
       } else {
         setCurrentPlayerIndex(0); // Reset to the first player
-        if (currentRoundIndex < 9) { // Check if there are more rounds
+        if (currentRoundIndex < 10) { // Check if there are more rounds
           setCurrentRoundIndex(currentRoundIndex + 1); // Move to the next round
         }
       }
