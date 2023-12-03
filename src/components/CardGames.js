@@ -74,8 +74,12 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
       <input type="number" onChange={(event) => setPlayerCount(event.target.value)} placeholder="Enter number of players" />
       {players.map((player, index) => (
         <div key={index}>
-          <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
-          <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} />
+          {index < playerCount && (
+            <>
+              <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
+              <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} />
+            </>
+          )}
         </div>
       ))}
     </div>
@@ -83,3 +87,4 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
 }
 
 export default CardGames;
+
