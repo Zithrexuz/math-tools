@@ -116,7 +116,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
                 <Td>{i + 1}</Td>
                 {players.map((player, index) => (
                   <Td key={index}>
-                    <input type="number" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} />
+                    <input type="number" step="5" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} />
                   </Td>
                 ))}
               </tr>
