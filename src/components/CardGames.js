@@ -88,7 +88,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
           {Array.from({ length: playerCount }, (_, index) => (
             <div key={index}>
               <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
-              <DeleteButton size={20} onClick={() => onPlayerNameChange(index, '')} />
+              <DeleteButton size={20} onClick={() => onPlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
         </>
