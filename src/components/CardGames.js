@@ -92,7 +92,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   };
 
   const handleScoreSubmit = () => {
-    if (currentScore % 5 === 0) { // Check if the number is a multiple of 5
+    if (currentScore && currentScore % 5 === 0) { // Check if the input field is not empty and the number is a multiple of 5
       const newScores = [...scores];
       newScores[currentPlayerIndex][currentRoundIndex] = currentScore; // Update the score for the current player
       setScores(newScores);
@@ -101,7 +101,9 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
         setCurrentPlayerIndex(currentPlayerIndex + 1); // Move to the next player
       } else {
         setCurrentPlayerIndex(0); // Reset to the first player
-        setCurrentRoundIndex(currentRoundIndex + 1); // Move to the next round
+        if (currentRoundIndex < 9) { // Check if there are more rounds
+          setCurrentRoundIndex(currentRoundIndex + 1); // Move to the next round
+        }
       }
     }
   };
