@@ -32,45 +32,17 @@ export default CardGames;
 
 //import React, { useState } from 'react';
 //import { useEffect } from 'react';
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { MdDelete } from 'react-icons/md';
-
-const Title = styled.h2`
-  margin-bottom: 20px;
-`;
-
-const CreateButton = styled.button`
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4caf50;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #45a049;
-  }
-`;
-
-const PlayerInput = styled.input`
-  margin-bottom: 10px;
-`;
-
-const DeleteButton = styled(MdDelete)`
-  margin-left: 10px;
-  cursor: pointer;
-`;
-
 function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
 
   const handleCreatePlayers = () => {
-    onCreatePlayers(playerCount);
     setGameStarted(true);
+  };
+
+  const handlePlayerCountChange = (event) => {
+    setPlayerCount(event.target.value);
+    onCreatePlayers(event.target.value);
   };
 
   return (
@@ -79,7 +51,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
       {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
       {gameStarted && (
         <>
-          <input type="number" min="1" onChange={(event) => setPlayerCount(event.target.value)} onBlur={handleCreatePlayers} placeholder="Enter number of players" />
+          <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {players.map((player, index) => (
             <div key={index}>
               <PlayerInput type="text" value={player.name} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
