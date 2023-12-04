@@ -177,6 +177,8 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
                     <input type="number" placeholder={i <= currentRoundIndex ? totalScores[index] || 0 : ''} readOnly />
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ''})</span>
                     */}
+                    <input type="number" placeholder={roundScores[index][i] || 0} readOnly />
+                    <span>({i === currentRoundIndex ? scores[index][i] || 0 : ''})</span>
                   </Td>
                 ))}
               </tr>
