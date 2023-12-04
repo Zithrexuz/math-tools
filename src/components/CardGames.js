@@ -100,7 +100,8 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
 
       // Calculate the total score for the current player
       const newTotalScores = [...totalScores];
-      newTotalScores[currentPlayerIndex] += score;
+      //newTotalScores[currentPlayerIndex] += score;
+      newTotalScores[currentPlayerIndex] = (newTotalScores[currentPlayerIndex] || 0) + score; // Adding the previous rounds score.
       setTotalScores(newTotalScores);
 
       setCurrentScore(''); // Reset the current score
@@ -154,8 +155,8 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
                     {/* <input type="number" step="5" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} /> */}
                     {/* <input type="number" value={totalScores[index] + ' (' + scores[index][i] + ')'} onChange={(event) => handleScoreChange(index, i, event)} /> {/* Added this for showing the total score and the currentscore for each round in the table cells. */}
                     {/* <input type="number" value={(totalScores[index] || 0) + ' (' + (scores[index][i] || 0) + ')'} onChange={(event) => handleScoreChange(index, i, event)} /> */}
-                    <div>Total Score: {totalScores[index] || 0} (Current Round: {scores[index][i] || 0})</div>
-                    <input type="number" onChange={(event) => handleScoreChange(index, i, event)} />
+                    <input type="number" value={totalScores[index] || 0} onChange={(event) => handleScoreChange(index, i, event)} />
+                    <div>({scores[index][i] || 0})</div>
                   </Td>
                 ))}
               </tr>
