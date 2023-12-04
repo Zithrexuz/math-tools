@@ -57,6 +57,8 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
   const [currentScore, setCurrentScore] = useState('');
+  const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
+
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -116,6 +118,12 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
       const newScores = [...scores];
       newScores[currentPlayerIndex][currentRoundIndex] = currentScore; // Update the score for the current player
       setScores(newScores);
+
+      // Calculate the total score for the current player
+      const newTotalScores = [...totalScores];
+      newTotalScores[currentPlayerIndex] += parseInt(currentScore);
+      setTotalScores(newTotalScores);
+
       setCurrentScore(''); // Reset the current score
       if (currentPlayerIndex < playerCount - 1) {
         setCurrentPlayerIndex(currentPlayerIndex + 1); // Move to the next player
@@ -165,6 +173,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
                 {players.map((player, index) => (
                   <Td key={index}>
                     <input type="number" step="5" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} />
+                    {totalScores[index]} ({scores[index][i]}) {/* Added this for showing the total score and the currentscore for each round in the table cells. */}
                   </Td>
                 ))}
               </tr>
