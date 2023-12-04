@@ -51,7 +51,7 @@ function App() {
           onPlayerNameChange={handlePlayerNameChange}
           onCreatePlayers={(count) => {
             setPlayers(new Array(count).fill({ name: '' }));
-            setGameCreated(true);
+            //setGameCreated(true);
           }}
         />
       )}
