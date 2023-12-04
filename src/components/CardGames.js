@@ -116,12 +116,15 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     console.log(currentRoundIndex);
     if (currentScore && currentScore % 5 === 0 && currentRoundIndex < 10) { // Check if the input field is not empty, the number is a multiple of 5, there are more rounds, and there are more players /////&& currentPlayerIndex < playerCount
       const newScores = [...scores];
-      newScores[currentPlayerIndex][currentRoundIndex] = currentScore; // Update the score for the current player
+      const score = parseInt(currentScore);
+
+      //newScores[currentPlayerIndex][currentRoundIndex] = currentScore;
+      newScores[currentPlayerIndex][currentRoundIndex] = score; // Update the score for the current player
       setScores(newScores);
 
       // Calculate the total score for the current player
       const newTotalScores = [...totalScores];
-      newTotalScores[currentPlayerIndex] += parseInt(currentScore);
+      newTotalScores[currentPlayerIndex] += score;
       setTotalScores(newTotalScores);
 
       setCurrentScore(''); // Reset the current score
@@ -172,14 +175,13 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
                 <Td>{i + 1}</Td>
                 {players.map((player, index) => (
                   <Td key={index}>
-                    <input type="number" step="5" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} />
-                    {totalScores[index]} ({scores[index][i]}) {/* Added this for showing the total score and the currentscore for each round in the table cells. */}
+                    {/* <input type="number" step="5" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} /> */}
+                    <input type="number" value={totalScores[index] + ' (' + scores[index][i] + ')'} onChange={(event) => handleScoreChange(index, i, event)} /> {/* Added this for showing the total score and the currentscore for each round in the table cells. */}
                   </Td>
                 ))}
               </tr>
             ))}
           </tbody>
-            {/* ... rest of your table code ... */}
           </Table>
         </>
       )}
