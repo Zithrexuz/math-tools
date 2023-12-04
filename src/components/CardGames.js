@@ -58,6 +58,8 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
   const [currentScore, setCurrentScore] = useState('');
   const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
+  // Initialize roundScores state
+  const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill('')));
 
 
   const handleCreatePlayers = () => {
@@ -65,7 +67,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   };
 
   const handlePlayerCountChange = (event) => {
-    const count = Math.min(event.target.value, 15); // Limit the number of players to 15
+    const count = Math.min(event.target.value, 10); // Limit the number of players to 10
     setPlayerCount(count);
     onCreatePlayers(count);
   };
@@ -80,6 +82,11 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   // Update scores state when playerCount changes
   useEffect(() => {
     setScores(Array(playerCount).fill().map(() => Array(10).fill('')));
+  }, [playerCount]);
+
+  // Update roundScores state when playerCount changes
+  useEffect(() => {
+    setRoundScores(Array(playerCount).fill().map(() => Array(10).fill('')));
   }, [playerCount]);
 
   
@@ -103,6 +110,13 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
       //newTotalScores[currentPlayerIndex] += score;
       newTotalScores[currentPlayerIndex] = (newTotalScores[currentPlayerIndex] || 0) + score; // Adding the previous rounds score.
       setTotalScores(newTotalScores);
+
+
+      // Update roundScores
+      const newRoundScores = [...roundScores];
+      newRoundScores[currentPlayerIndex][currentRoundIndex] = newTotalScores[currentPlayerIndex];
+      setRoundScores(newRoundScores);
+
 
       setCurrentScore(''); // Reset the current score
       if (currentPlayerIndex < playerCount - 1) {
@@ -159,8 +173,10 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
                     <input type="number" placeholder={totalScores[index] || 0} onChange={(event) => handleScoreChange(index, i, event)} />
                     <span>({scores[index][i] || 0})</span>
                     */}
+                    {/* This one is my latest version of the totalscore/display system for score
                     <input type="number" placeholder={i <= currentRoundIndex ? totalScores[index] || 0 : ''} readOnly />
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ''})</span>
+                    */}
                   </Td>
                 ))}
               </tr>
