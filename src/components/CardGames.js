@@ -152,7 +152,8 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
                 {players.map((player, index) => (
                   <Td key={index}>
                     {/* <input type="number" step="5" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} /> */}
-                    <input type="number" value={totalScores[index] + ' (' + scores[index][i] + ')'} onChange={(event) => handleScoreChange(index, i, event)} /> {/* Added this for showing the total score and the currentscore for each round in the table cells. */}
+                    {/* <input type="number" value={totalScores[index] + ' (' + scores[index][i] + ')'} onChange={(event) => handleScoreChange(index, i, event)} /> {/* Added this for showing the total score and the currentscore for each round in the table cells. */}
+                    <input type="number" value={(totalScores[index] || 0) + ' (' + (scores[index][i] || 0) + ')'} onChange={(event) => handleScoreChange(index, i, event)} />
                   </Td>
                 ))}
               </tr>
