@@ -55,7 +55,7 @@ const ScoreInput = styled.input`
 `;
 
 
-function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
+function CardGames({ onPlayerNameChange, onCreatePlayers }) {
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [showTable, setShowTable] = useState(false);
