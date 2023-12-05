@@ -76,6 +76,19 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     onCreatePlayers(count);
   };
 
+  const handlePlayerNameChange = (index, event) => {
+    const newPlayers = [...players];
+    newPlayers[index] = { name: event.target.value };
+    setPlayers(newPlayers);
+
+    const newValidPlayers = [...validPlayers];
+    newValidPlayers[index] = event.target.value.trim() !== '';
+    setValidPlayers(newValidPlayers);
+  };
+
+  // Pass handlePlayerNameChange down to App component through props if necessary
+  <App onPlayerNameChange={handlePlayerNameChange} />
+
   const handleShowTable = () => {
     //setShowTable(true);
     if (validPlayers.every(isValid => isValid)) {

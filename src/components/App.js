@@ -30,16 +30,6 @@ function App() {
     setGameCreated(false);
   };
 
-  const handlePlayerNameChange = (index, event) => {
-    const newPlayers = [...players];
-    newPlayers[index] = { name: event.target.value };
-    setPlayers(newPlayers);
-
-    const newValidPlayers = [...validPlayers];
-    newValidPlayers[index] = event.target.value.trim() !== '';
-    setValidPlayers(newValidPlayers);
-  };
-
   return (
     <AppContainer>
       {tab === 'home' && (
