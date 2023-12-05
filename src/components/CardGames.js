@@ -86,8 +86,6 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
     setValidPlayers(newValidPlayers);
   };
 
-  // Pass handlePlayerNameChange down to App component through props if necessary
-  <App onPlayerNameChange={handlePlayerNameChange} />
 
   const handleShowTable = () => {
     //setShowTable(true);
