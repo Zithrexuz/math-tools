@@ -160,7 +160,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
             <div key={index}>
-              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
+              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
               <DeleteButton size={20} onClick={() => onPlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
