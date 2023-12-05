@@ -55,7 +55,7 @@ const ScoreInput = styled.input`
 `;
 
 
-function CardGames({ onPlayerNameChange, onCreatePlayers }) {
+function CardGames() {
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [showTable, setShowTable] = useState(false);
@@ -69,6 +69,7 @@ function CardGames({ onPlayerNameChange, onCreatePlayers }) {
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
+    setPlayers(new Array(playerCount).fill({ name: '' })); // Create players here
   };
 
   const handlePlayerCountChange = (event) => {
@@ -160,7 +161,7 @@ function CardGames({ onPlayerNameChange, onCreatePlayers }) {
           {Array.from({ length: playerCount }, (_, index) => (
             <div key={index}>
               <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
-              <DeleteButton size={20} onClick={() => onPlayerNameChange(index, { target: { value: '' } })} />
+              <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
           {/* <button onClick={handleShowTable}>Go to table</button> */}
