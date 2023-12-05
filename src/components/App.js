@@ -43,10 +43,10 @@ function App() {
         <CardGames
           //players={players}
           //onPlayerNameChange={handlePlayerNameChange}
-          onCreatePlayers={(count) => {
-            setPlayers(new Array(count).fill({ name: '' }));
+          //onCreatePlayers={(count) => {
+            //setPlayers(new Array(count).fill({ name: '' }));
             //setGameCreated(true);
-          }}
+          //}}
         />
       )}
     </AppContainer>
