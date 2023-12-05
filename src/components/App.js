@@ -24,7 +24,6 @@ function App() {
   const [tab, setTab] = useState('home');
   const [players, setPlayers] = useState([]);
   const [gameCreated, setGameCreated] = useState(false);
-  const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
 
   const handleTabChange = (newTab) => {
     setTab(newTab);

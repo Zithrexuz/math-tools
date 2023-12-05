@@ -64,7 +64,7 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [currentScore, setCurrentScore] = useState('');
   const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
   const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
-  
+  const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
