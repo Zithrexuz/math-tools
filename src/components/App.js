@@ -41,7 +41,7 @@ function App() {
       <Tabs onChange={handleTabChange} gameCreated={gameCreated} />
       {tab === 'cardGames' && (
         <CardGames
-          players={players}
+          //players={players}
           //onPlayerNameChange={handlePlayerNameChange}
           onCreatePlayers={(count) => {
             setPlayers(new Array(count).fill({ name: '' }));
