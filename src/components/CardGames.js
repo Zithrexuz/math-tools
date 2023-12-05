@@ -74,7 +74,7 @@ function CardGames({ onPlayerNameChange, onCreatePlayers }) {
   const handlePlayerCountChange = (event) => {
     const count = Math.min(event.target.value, 5); // Limit the number of players to 5
     setPlayerCount(count);
-    onCreatePlayers(count);
+    //onCreatePlayers(count);
   };
 
   const handlePlayerNameChange = (index, event) => {
