@@ -48,6 +48,10 @@ const Td = styled.td`
   padding: 10px; /* Add some padding so content isn't right up against the border */
 `;
 
+// styling for game indicators like (Winner, currentround and currentplayer)
+const ScoreInput = styled.input`
+  background-color: ${props => props.score >= 500 ? 'lightgreen' : 'white'};
+`;
 
 
 function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
@@ -73,7 +77,15 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   };
 
   const handleShowTable = () => {
-    setShowTable(true);
+    //setShowTable(true);
+
+    // Check if all player names are entered
+    if (players.every(player => player.name.trim() !== '')) {
+      setShowTable(true);
+    } else {
+      alert('Please enter all player names.');
+    }
+
   };
 
   // Add a new state to store the scores
@@ -177,7 +189,8 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
                     <input type="number" placeholder={i <= currentRoundIndex ? totalScores[index] || 0 : ''} readOnly />
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ''})</span>
                     */}
-                    <input type="number" placeholder={roundScores[index][i] || 0} readOnly />
+                    <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
+                    {/* <input type="number" placeholder={roundScores[index][i] || 0} readOnly /> */}
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span>
                     {/* <span>({i === currentRoundIndex ? scores[index][i] || 0 : ''})</span> */}
                   </Td>
