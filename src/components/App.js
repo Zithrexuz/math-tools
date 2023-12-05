@@ -22,7 +22,7 @@ const Subtitle = styled.h2`
 
 function App() {
   const [tab, setTab] = useState('home');
-  const [players, setPlayers] = useState([]);
+  //const [players, setPlayers] = useState([]);
   const [gameCreated, setGameCreated] = useState(false);
 
   const handleTabChange = (newTab) => {
