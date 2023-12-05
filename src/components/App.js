@@ -42,7 +42,7 @@ function App() {
       {tab === 'cardGames' && (
         <CardGames
           players={players}
-          onPlayerNameChange={handlePlayerNameChange}
+          //onPlayerNameChange={handlePlayerNameChange}
           onCreatePlayers={(count) => {
             setPlayers(new Array(count).fill({ name: '' }));
             //setGameCreated(true);
