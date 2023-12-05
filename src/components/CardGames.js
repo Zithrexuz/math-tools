@@ -25,6 +25,7 @@ const CreateButton = styled.button`
 
 const PlayerInput = styled.input`
   margin-bottom: 10px;
+  border-color: ${props => props.isValid ? 'black' : 'red'};
 `;
 
 const DeleteButton = styled(MdDelete)`
@@ -62,30 +63,24 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
   const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
   const [currentScore, setCurrentScore] = useState('');
   const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
-  // Initialize roundScores state
-  const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill('')));
-
+  const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
+  
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
   };
 
   const handlePlayerCountChange = (event) => {
-    const count = Math.min(event.target.value, 10); // Limit the number of players to 10
+    const count = Math.min(event.target.value, 5); // Limit the number of players to 5
     setPlayerCount(count);
     onCreatePlayers(count);
   };
 
   const handleShowTable = () => {
     //setShowTable(true);
-
-    // Check if all player names are entered
-    if (players.every(player => player.name.trim() !== '')) {
+    if (validPlayers.every(isValid => isValid)) {
       setShowTable(true);
-    } else {
-      alert('Please enter all player names.');
     }
-
   };
 
   // Add a new state to store the scores
@@ -152,11 +147,12 @@ function CardGames({ players, onPlayerNameChange, onCreatePlayers }) {
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
             <div key={index}>
-              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
+              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => onPlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
               <DeleteButton size={20} onClick={() => onPlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
-          <button onClick={handleShowTable}>Go to table</button>
+          {/* <button onClick={handleShowTable}>Go to table</button> */}
+          {playerCount > 0 && <button onClick={handleShowTable}>Go to table</button>}
         </>
       )}
       {showTable && (
