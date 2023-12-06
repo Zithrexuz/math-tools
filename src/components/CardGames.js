@@ -176,7 +176,7 @@ function CardGames() {
             </div>
           ))}
           {/* <button onClick={handleShowTable}>Go to table</button> */}
-          {playerCount > 0 && <button onClick={handleShowTable} disabled={!validPlayers.every(isValid => isValid)}>Go to table</button>}
+          {playerCount > 0 && <button onClick={handleShowTable} disabled={!validPlayers.every(isValid => isValid) || !players.every(player => player.name.trim() !== '')}>Go to table</button>}
         </>
       )}
       {showTable && (
