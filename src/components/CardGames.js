@@ -91,8 +91,20 @@ function CardGames() {
 
   const handleShowTable = () => {
     //setShowTable(true);
+    /*
     if (validPlayers.every(isValid => isValid)) {
       setShowTable(true);
+    }
+    */
+    // Check if all players have entered their names
+    const allPlayersEntered = players.every(player => player.name.trim() !== '');
+
+    if (allPlayersEntered) {
+      setShowTable(true);
+    } else {
+      // Highlight the input fields in red for players who haven't entered their names
+      const newValidPlayers = players.map(player => player.name.trim() !== '');
+      setValidPlayers(newValidPlayers);
     }
   };
 
