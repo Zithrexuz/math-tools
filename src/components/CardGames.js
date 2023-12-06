@@ -65,7 +65,6 @@ function CardGames() {
   const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
   const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
   const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
-  //const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
   const [highlightEmptyFields, setHighlightEmptyFields] = useState(false);
 
   const handleCreatePlayers = () => {
@@ -75,10 +74,11 @@ function CardGames() {
   };
 
   const handlePlayerCountChange = (event) => {
-    const count = Math.min(event.target.value, 5); // Limit the number of players to 5
+    let count = Math.min(event.target.value, 5); // Limit the number of players to 5
+    count = Math.max(count, 0); // Prevent negative numbers
+    //const count = Math.min(event.target.value, 5); // Limit the number of players to 5
     setPlayerCount(count);
     setPlayers(new Array(count).fill(null)); // Fill the players array with null values
-    //setValidPlayers(new Array(count).fill(false)); // Set all validPlayers to false
     //onCreatePlayers(count);
   };
 
@@ -86,25 +86,14 @@ function CardGames() {
     const newPlayers = [...players];
     newPlayers[index] = { name: event.target.value };
     setPlayers(newPlayers);
-
-    //const newValidPlayers = [...validPlayers];
-    //newValidPlayers[index] = event.target.value.trim() !== '';
-    //setValidPlayers(newValidPlayers);
   };
 
 
   const handleShowTable = () => {
-    //setShowTable(true);
-    /*
-    if (validPlayers.every(isValid => isValid)) {
-      setShowTable(true);
-    }
-    */
     if (players.every(player => player && player.name.trim() !== '')) {
-      console.log('HI true');
+      console.log('Showing table');
       setShowTable(true);
     } else {
-      //console.log('HI false');
       setHighlightEmptyFields(true);
       setTimeout(() => setHighlightEmptyFields(false), 2000);
     }
@@ -206,7 +195,6 @@ function CardGames() {
                 <Td>{i + 1}</Td>
                 {players.map((player, index) => (
                   <Td key={index}>
-                    
                     <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
                     {/* <input type="number" placeholder={roundScores[index][i] || 0} readOnly /> */}
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span>
