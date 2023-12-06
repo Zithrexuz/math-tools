@@ -70,12 +70,14 @@ function CardGames() {
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
-    setPlayers(new Array(playerCount).fill({ name: '' })); // Create players here
+    //setPlayers(new Array(playerCount).fill({ name: '' })); // Create players here
+    setPlayers(players.map(player => player || { name: '' })); // Replace null values with objects with empty name properties
   };
 
   const handlePlayerCountChange = (event) => {
     const count = Math.min(event.target.value, 5); // Limit the number of players to 5
     setPlayerCount(count);
+    setPlayers(new Array(count).fill(null)); // Fill the players array with null values
     //onCreatePlayers(count);
   };
 
@@ -103,7 +105,7 @@ function CardGames() {
     } else {
       console.log('HI false');
       setHighlightEmptyFields(true);
-      setTimeout(() => setHighlightEmptyFields(false), 2000);
+      setTimeout(() => setHighlightEmptyFields(false), 3000);
     }
   };
 
