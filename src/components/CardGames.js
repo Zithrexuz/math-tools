@@ -57,6 +57,7 @@ const HighlightedPlayerInput = styled(PlayerInput)`
 
 const HighlightedTd = styled(Td)`
   background-color: green;
+  color: white; // Change the text color to white for better contrast
 `;
 
 function CardGames() {
@@ -217,7 +218,7 @@ function CardGames() {
             <tr>
               <Th>Round</Th>
               {players.map((player, index) => (
-                <Th key={index}>{index === currentPlayerIndex ? <HighlightedTd>{player.name}</HighlightedTd> : player.name}</Th>
+                index === currentPlayerIndex ? <HighlightedTd key={index}>{player.name}</HighlightedTd> : <Th key={index}>{player.name}</Th>
               ))}
             </tr>
           </thead>
