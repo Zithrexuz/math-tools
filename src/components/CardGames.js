@@ -64,7 +64,8 @@ function CardGames() {
   const [currentScore, setCurrentScore] = useState('');
   const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
   const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
-  const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
+  //const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
+  const [players, setPlayers] = useState(Array(playerCount).fill(null));
   //const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
   //const [attemptedTableAccess, setAttemptedTableAccess] = useState(false);
   //const [allPlayersEntered, setAllPlayersEntered] = useState(false);
