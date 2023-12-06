@@ -174,6 +174,7 @@ function CardGames() {
     setGameOver(false);
     setGameStarted(false);
     setShowTable(false);
+    setRoundCount(10);
   };
 
 
