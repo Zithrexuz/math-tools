@@ -99,6 +99,7 @@ function CardGames() {
     */
     // Check if all players have entered their names
     const allPlayersEntered = players.every(player => player.name.trim() !== '');
+    console.log(allPlayersEntered);
     if (allPlayersEntered) {
       setShowTable(true);
     } else {
