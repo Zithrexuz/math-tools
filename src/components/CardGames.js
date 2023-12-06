@@ -96,9 +96,6 @@ function CardGames() {
     newPlayers[index] = { name: event.target.value };
     setPlayers(newPlayers);
 
-    const allNamesEntered = newPlayers.every(player => player.name.trim() !== '');
-    setAllPlayersEntered(allNamesEntered);
-
   };
 
 
@@ -111,6 +108,10 @@ function CardGames() {
     */
     // Check if all players have entered their names
     //const allPlayersEntered = players.every(player => player.name.trim() !== '');
+
+    const allNamesEntered = newPlayers.every(player => player.name.trim() !== '');
+    setAllPlayersEntered(allNamesEntered);
+
     console.log(allPlayersEntered);
     if (allPlayersEntered) {
       setShowTable(true);
