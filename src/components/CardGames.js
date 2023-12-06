@@ -66,6 +66,7 @@ function CardGames() {
   const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
   const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
   const [highlightEmptyFields, setHighlightEmptyFields] = useState(false);
+  const [roundCount, setRoundCount] = useState(10);
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -152,6 +153,12 @@ function CardGames() {
     }
   };
   
+  const handleAddRound = () => {
+    setRoundCount(roundCount + 1);
+    setScores(scores.map(playerScores => [...playerScores, '']));
+    setRoundScores(roundScores.map(playerScores => [...playerScores, '']));
+  };
+
 
   return (
     <div>
@@ -177,6 +184,7 @@ function CardGames() {
       )}
       {showTable && (
         <>
+          <button onClick={handleAddRound}>Add Round</button>
           <input type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />
           <button onClick={handleScoreSubmit}>Submit</button>
           <Table>
@@ -189,7 +197,7 @@ function CardGames() {
             </tr>
           </thead>
           <tbody>
-            {Array.from({ length: 10 }, (_, i) => (
+            {Array.from({ length: roundCount }, (_, i) => (
               <tr key={i}>
                 <Td>{i + 1}</Td>
                 {players.map((player, index) => (
