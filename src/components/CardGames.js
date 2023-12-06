@@ -70,7 +70,7 @@ function CardGames() {
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
-    //setPlayers(new Array(playerCount).fill({ name: '' })); // Create players here
+    setPlayers(new Array(playerCount).fill({ name: '' })); // Create players here
   };
 
   const handlePlayerCountChange = (event) => {
@@ -99,6 +99,8 @@ function CardGames() {
     */
     // Check if all players have entered their names
     const allPlayersEntered = players.every(player => player.name.trim() !== '');
+    const validPlayers = players.map(player => player.name.trim() !== '');
+    setValidPlayers(validPlayers);
 
     if (allPlayersEntered) {
       setShowTable(true);
