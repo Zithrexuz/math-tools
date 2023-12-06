@@ -109,8 +109,10 @@ function CardGames() {
     // Check if all players have entered their names
     //const allPlayersEntered = players.every(player => player.name.trim() !== '');
 
-    const allNamesEntered = newPlayers.every(player => player.name.trim() !== '');
-    setAllPlayersEntered(allNamesEntered);
+    //const allNamesEntered = newPlayers.every(player => player.name.trim() !== '');
+    //setAllPlayersEntered(allNamesEntered);
+
+    const allPlayersEntered = players.every(player => player.name.trim() !== '');
 
     console.log(allPlayersEntered);
     if (allPlayersEntered) {
@@ -189,7 +191,7 @@ function CardGames() {
             </div>
           ))}
           {/* <button onClick={handleShowTable}>Go to table</button> */}
-          {playerCount > 0 && <button onClick={handleShowTable} disabled={!allPlayersEntered}>Go to table</button>}
+          {playerCount > 0 && <button onClick={handleShowTable} disabled={!players.every(player => player.name.trim() !== '')}>Go to table</button>}
         </>
       )}
       {showTable && (
