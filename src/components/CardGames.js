@@ -70,7 +70,7 @@ function CardGames() {
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
-    setPlayers(new Array(playerCount).fill({ name: '' })); // Create players here
+    //setPlayers(new Array(playerCount).fill({ name: '' })); // Create players here
   };
 
   const handlePlayerCountChange = (event) => {
