@@ -78,6 +78,7 @@ function CardGames() {
     const count = Math.min(event.target.value, 5); // Limit the number of players to 5
     setPlayerCount(count);
     setPlayers(new Array(count).fill(null)); // Fill the players array with null values
+    setValidPlayers(new Array(count).fill(false)); // Set all validPlayers to false
     //onCreatePlayers(count);
   };
 
@@ -105,7 +106,7 @@ function CardGames() {
     } else {
       //console.log('HI false');
       setHighlightEmptyFields(true);
-      setTimeout(() => setHighlightEmptyFields(false), 3000);
+      setTimeout(() => setHighlightEmptyFields(false), 2000);
     }
   };
 
