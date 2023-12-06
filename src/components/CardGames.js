@@ -67,7 +67,7 @@ function CardGames() {
   const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
   //const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
   //const [attemptedTableAccess, setAttemptedTableAccess] = useState(false);
-  const [allPlayersEntered, setAllPlayersEntered] = useState(false);
+  //const [allPlayersEntered, setAllPlayersEntered] = useState(false);
 
 
   const handleCreatePlayers = () => {
@@ -112,7 +112,6 @@ function CardGames() {
     //const allNamesEntered = newPlayers.every(player => player.name.trim() !== '');
     //setAllPlayersEntered(allNamesEntered);
 
-    console.log(allPlayersEntered);
     const allPlayersEntered = players.every(player => player.name.trim() !== '');
     if (allPlayersEntered) {
       setShowTable(true);
