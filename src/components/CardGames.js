@@ -99,13 +99,10 @@ function CardGames() {
     */
     // Check if all players have entered their names
     const allPlayersEntered = players.every(player => player.name.trim() !== '');
-    const validPlayers = players.map(player => player.name.trim() !== '');
-    setValidPlayers(validPlayers);
-
     if (allPlayersEntered) {
       setShowTable(true);
     } else {
-      setAttemptedTableAccess(true);
+      setAttemptedTableAccess(true); // This will trigger the input fields to turn red
     }
   };
 
@@ -173,7 +170,7 @@ function CardGames() {
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
             <div key={index}>
-              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index] && !attemptedTableAccess} />
+              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index] || !attemptedTableAccess} />
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
