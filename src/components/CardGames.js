@@ -55,6 +55,10 @@ const HighlightedPlayerInput = styled(PlayerInput)`
   background-color: red;
 `;
 
+const HighlightedTd = styled(Td)`
+  background-color: green;
+`;
+
 function CardGames() {
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
@@ -213,14 +217,15 @@ function CardGames() {
             <tr>
               <Th>Round</Th>
               {players.map((player, index) => (
-                <Th key={index}>{player.name}</Th>
+                <Th key={index}>{index === currentPlayerIndex ? <HighlightedTd>{player.name}</HighlightedTd> : player.name}</Th>
               ))}
             </tr>
           </thead>
           <tbody>
             {Array.from({ length: roundCount }, (_, i) => (
               <tr key={i}>
-                <Td>{i + 1}</Td>
+                {/* <Td>{i + 1}</Td> */}
+                <Td>{i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : i + 1}</Td>
                 {players.map((player, index) => (
                   <Td key={index}>
                     <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
