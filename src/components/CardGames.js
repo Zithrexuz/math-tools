@@ -65,8 +65,10 @@ function CardGames() {
   const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
   const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
   const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
-  const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
-  const [attemptedTableAccess, setAttemptedTableAccess] = useState(false);
+  //const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
+  //const [attemptedTableAccess, setAttemptedTableAccess] = useState(false);
+  const [allPlayersEntered, setAllPlayersEntered] = useState(false);
+
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -80,6 +82,7 @@ function CardGames() {
   };
 
   const handlePlayerNameChange = (index, event) => {
+    /*
     const newPlayers = [...players];
     newPlayers[index] = { name: event.target.value };
     setPlayers(newPlayers);
@@ -87,6 +90,15 @@ function CardGames() {
     const newValidPlayers = [...validPlayers];
     newValidPlayers[index] = event.target.value.trim() !== '';
     setValidPlayers(newValidPlayers);
+    */
+
+    const newPlayers = [...players];
+    newPlayers[index] = { name: event.target.value };
+    setPlayers(newPlayers);
+
+    const allNamesEntered = newPlayers.every(player => player.name.trim() !== '');
+    setAllPlayersEntered(allNamesEntered);
+
   };
 
 
@@ -98,7 +110,7 @@ function CardGames() {
     }
     */
     // Check if all players have entered their names
-    const allPlayersEntered = players.every(player => player.name.trim() !== '');
+    //const allPlayersEntered = players.every(player => player.name.trim() !== '');
     console.log(allPlayersEntered);
     if (allPlayersEntered) {
       setShowTable(true);
@@ -176,7 +188,7 @@ function CardGames() {
             </div>
           ))}
           {/* <button onClick={handleShowTable}>Go to table</button> */}
-          {playerCount > 0 && <button onClick={handleShowTable} disabled={!validPlayers.every(isValid => isValid)}>Go to table</button>}
+          {playerCount > 0 && <button onClick={handleShowTable} disabled={!allPlayersEntered}>Go to table</button>}
         </>
       )}
       {showTable && (
