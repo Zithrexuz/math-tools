@@ -65,7 +65,7 @@ function CardGames() {
   const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
   const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
   const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
-  const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
+  //const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
   const [highlightEmptyFields, setHighlightEmptyFields] = useState(false);
 
   const handleCreatePlayers = () => {
@@ -78,7 +78,7 @@ function CardGames() {
     const count = Math.min(event.target.value, 5); // Limit the number of players to 5
     setPlayerCount(count);
     setPlayers(new Array(count).fill(null)); // Fill the players array with null values
-    setValidPlayers(new Array(count).fill(false)); // Set all validPlayers to false
+    //setValidPlayers(new Array(count).fill(false)); // Set all validPlayers to false
     //onCreatePlayers(count);
   };
 
@@ -87,9 +87,9 @@ function CardGames() {
     newPlayers[index] = { name: event.target.value };
     setPlayers(newPlayers);
 
-    const newValidPlayers = [...validPlayers];
-    newValidPlayers[index] = event.target.value.trim() !== '';
-    setValidPlayers(newValidPlayers);
+    //const newValidPlayers = [...validPlayers];
+    //newValidPlayers[index] = event.target.value.trim() !== '';
+    //setValidPlayers(newValidPlayers);
   };
 
 
@@ -174,10 +174,10 @@ function CardGames() {
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
             <div key={index}>
-              {highlightEmptyFields && players[index]?.name.trim() === '' ? (
-              <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
+              {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
+              <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
             ) : (
-              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
+              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
             )}
               {/* <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} /> */}
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
