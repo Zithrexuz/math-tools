@@ -67,6 +67,7 @@ function CardGames() {
   const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
   const [highlightEmptyFields, setHighlightEmptyFields] = useState(false);
   const [roundCount, setRoundCount] = useState(10);
+  const [gameOver, setGameOver] = useState(false);
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -95,7 +96,7 @@ function CardGames() {
       setShowTable(true);
     } else {
       setHighlightEmptyFields(true);
-      setTimeout(() => setHighlightEmptyFields(false), 2000);
+      setTimeout(() => setHighlightEmptyFields(false), 1000);
     }
   };
 
@@ -150,6 +151,11 @@ function CardGames() {
           setCurrentRoundIndex(currentRoundIndex + 1); // Move to the next round
         }
       }
+
+
+      if (newTotalScores.some(score => score >= 500)) {
+        setGameOver(true);
+      }
     }
   };
   
@@ -157,6 +163,17 @@ function CardGames() {
     setRoundCount(roundCount + 1);
     setScores(scores.map(playerScores => [...playerScores, '']));
     setRoundScores(roundScores.map(playerScores => [...playerScores, '']));
+  };
+
+
+  const handleNewGame = () => {
+    setPlayerCount(0);
+    setPlayers([]);
+    setScores([]);
+    setRoundScores([]);
+    setGameOver(false);
+    setGameStarted(false);
+    setShowTable(false);
   };
 
 
@@ -214,6 +231,13 @@ function CardGames() {
           </Table>
         </>
       )}
+      {gameOver && (
+      <>
+        <h2>Game Over!</h2>
+        <h3>The winner is {players[totalScores.indexOf(Math.max(...totalScores))].name}!</h3>
+        <button onClick={handleNewGame}>New Game</button>
+      </>
+    )}
     </div>
   );
 }
