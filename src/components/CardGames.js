@@ -226,7 +226,7 @@ function CardGames() {
             {Array.from({ length: roundCount }, (_, i) => (
               <tr key={i}>
                 {/* <Td>{i + 1}</Td> */}
-                <Td>{i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : i + 1}</Td>
+                {i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : <Td>{i + 1}</Td>}
                 {players.map((player, index) => (
                   <Td key={index}>
                     <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
