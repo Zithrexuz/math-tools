@@ -25,7 +25,7 @@ const CreateButton = styled.button`
 
 const PlayerInput = styled.input`
   margin-bottom: 10px;
-  border-color: ${props => props.isValid ? 'black' : 'red'};
+  /* border-color: ${props => props.isValid ? 'black' : 'red'}; */
 `;
 
 const DeleteButton = styled(MdDelete)`
@@ -112,13 +112,10 @@ function CardGames() {
     //const allNamesEntered = newPlayers.every(player => player.name.trim() !== '');
     //setAllPlayersEntered(allNamesEntered);
 
-    const allPlayersEntered = players.every(player => player.name.trim() !== '');
-
     console.log(allPlayersEntered);
+    const allPlayersEntered = players.every(player => player.name.trim() !== '');
     if (allPlayersEntered) {
       setShowTable(true);
-    } else {
-      setAttemptedTableAccess(true); // This will trigger the input fields to turn red
     }
   };
 
