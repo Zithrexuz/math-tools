@@ -176,6 +176,8 @@ function CardGames() {
     setShowTable(false);
     setRoundCount(10);
     setCurrentRoundIndex(0);
+    setCurrentScore('');
+    setTotalScores(Array(playerCount).fill(0));
   };
 
 
