@@ -66,6 +66,7 @@ function CardGames() {
   const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
   const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
   const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
+  const [attemptedTableAccess, setAttemptedTableAccess] = useState(false);
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -102,9 +103,7 @@ function CardGames() {
     if (allPlayersEntered) {
       setShowTable(true);
     } else {
-      // Highlight the input fields in red for players who haven't entered their names
-      const newValidPlayers = players.map(player => player.name.trim() !== '');
-      setValidPlayers(newValidPlayers);
+      setAttemptedTableAccess(true);
     }
   };
 
@@ -172,7 +171,7 @@ function CardGames() {
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
             <div key={index}>
-              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
+              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index] || !attemptedTableAccess} />
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
