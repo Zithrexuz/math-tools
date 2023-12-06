@@ -1,5 +1,3 @@
-//import React, { useState } from 'react';
-//import { useEffect } from 'react';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { MdDelete } from 'react-icons/md';
@@ -25,7 +23,6 @@ const CreateButton = styled.button`
 
 const PlayerInput = styled.input`
   margin-bottom: 10px;
-  /* border-color: ${props => props.isValid ? 'black' : 'red'}; */
 `;
 
 const DeleteButton = styled(MdDelete)`
@@ -54,6 +51,9 @@ const ScoreInput = styled.input`
   background-color: ${props => props.score >= 500 ? 'lightgreen' : 'white'};
 `;
 
+const HighlightedPlayerInput = styled(PlayerInput)`
+  background-color: red;
+`;
 
 function CardGames() {
   const [playerCount, setPlayerCount] = useState(0);
@@ -64,12 +64,9 @@ function CardGames() {
   const [currentScore, setCurrentScore] = useState('');
   const [totalScores, setTotalScores] = useState(Array(playerCount).fill(0));
   const [roundScores, setRoundScores] = useState(Array(playerCount).fill().map(() => Array(10).fill(''))); // Initialize roundScores state
-  //const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
-  const [players, setPlayers] = useState(Array(playerCount).fill(''));
-  //const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
-  //const [attemptedTableAccess, setAttemptedTableAccess] = useState(false);
-  //const [allPlayersEntered, setAllPlayersEntered] = useState(false);
-
+  const [players, setPlayers] = useState(Array(playerCount).fill({ name: '' }));
+  const [validPlayers, setValidPlayers] = useState(Array(playerCount).fill(true)); // a check value for checking if players a valid for creating the table.
+  const [highlightEmptyFields, setHighlightEmptyFields] = useState(false);
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -83,7 +80,6 @@ function CardGames() {
   };
 
   const handlePlayerNameChange = (index, event) => {
-    /*
     const newPlayers = [...players];
     newPlayers[index] = { name: event.target.value };
     setPlayers(newPlayers);
@@ -91,12 +87,6 @@ function CardGames() {
     const newValidPlayers = [...validPlayers];
     newValidPlayers[index] = event.target.value.trim() !== '';
     setValidPlayers(newValidPlayers);
-    */
-
-    const newPlayers = [...players];
-    newPlayers[index] = { name: event.target.value };
-    setPlayers(newPlayers);
-
   };
 
 
@@ -107,15 +97,13 @@ function CardGames() {
       setShowTable(true);
     }
     */
-    // Check if all players have entered their names
-    //const allPlayersEntered = players.every(player => player.name.trim() !== '');
-
-    //const allNamesEntered = newPlayers.every(player => player.name.trim() !== '');
-    //setAllPlayersEntered(allNamesEntered);
-
-    const allPlayersEntered = players.every(player => player.name.trim() !== '');
-    if (allPlayersEntered) {
+    if (players.every(player => player.name.trim() !== '')) {
+      console.log('HI true');
       setShowTable(true);
+    } else {
+      console.log('HI false');
+      setHighlightEmptyFields(true);
+      setTimeout(() => setHighlightEmptyFields(false), 2000);
     }
   };
 
@@ -183,12 +171,17 @@ function CardGames() {
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
             <div key={index}>
-              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
+              {highlightEmptyFields && players[index]?.name.trim() === '' ? (
+              <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
+            ) : (
+              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} />
+            )}
+              {/* <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} /> */}
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
           {/* <button onClick={handleShowTable}>Go to table</button> */}
-          {playerCount > 0 && <button onClick={handleShowTable} disabled={!players.every(player => player.name.trim() !== '')}>Go to table</button>}
+          {playerCount > 0 && <button onClick={handleShowTable}>Go to table</button>}
         </>
       )}
       {showTable && (
@@ -210,17 +203,7 @@ function CardGames() {
                 <Td>{i + 1}</Td>
                 {players.map((player, index) => (
                   <Td key={index}>
-                    {/* <input type="number" step="5" value={scores[index][i]} onChange={(event) => handleScoreChange(index, i, event)} /> */}
-                    {/* <input type="number" value={totalScores[index] + ' (' + scores[index][i] + ')'} onChange={(event) => handleScoreChange(index, i, event)} /> {/* Added this for showing the total score and the currentscore for each round in the table cells. */}
-                    {/* <input type="number" value={(totalScores[index] || 0) + ' (' + (scores[index][i] || 0) + ')'} onChange={(event) => handleScoreChange(index, i, event)} /> */}
-                    {/*
-                    <input type="number" placeholder={totalScores[index] || 0} onChange={(event) => handleScoreChange(index, i, event)} />
-                    <span>({scores[index][i] || 0})</span>
-                    */}
-                    {/* This one is my latest version of the totalscore/display system for score
-                    <input type="number" placeholder={i <= currentRoundIndex ? totalScores[index] || 0 : ''} readOnly />
-                    <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ''})</span>
-                    */}
+                    
                     <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
                     {/* <input type="number" placeholder={roundScores[index][i] || 0} readOnly /> */}
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span>
