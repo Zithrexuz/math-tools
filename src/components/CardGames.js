@@ -103,7 +103,7 @@ function CardGames() {
       console.log('HI true');
       setShowTable(true);
     } else {
-      console.log('HI false');
+      //console.log('HI false');
       setHighlightEmptyFields(true);
       setTimeout(() => setHighlightEmptyFields(false), 3000);
     }
