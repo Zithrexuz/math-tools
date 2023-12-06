@@ -99,7 +99,7 @@ function CardGames() {
       setShowTable(true);
     }
     */
-    if (players.every(player => player.name.trim() !== '')) {
+    if (players.every(player => player && player.name.trim() !== '')) {
       console.log('HI true');
       setShowTable(true);
     } else {
