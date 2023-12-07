@@ -102,12 +102,10 @@ function CardGames() {
 
 
   const handleShowTable = () => {
-    if (players.every(player => player && player.name.trim() !== '')) {
+    if (players.every(player => player && player.name.trim() !== '') && dealer) {
       console.log('Showing table');
       setShowTable(true);
-    } else {
-      setHighlightEmptyFields(true);
-      setTimeout(() => setHighlightEmptyFields(false), 1000);
+      setCurrentPlayerIndex(players.findIndex(player => player.name === dealer)); // Set the current player to the dealer
     }
   };
 
@@ -237,7 +235,7 @@ function CardGames() {
             <tr>
               <Th>Round</Th>
               {players.map((player, index) => (
-                index === currentPlayerIndex ? <HighlightedTd key={index}>{player.name}{player.name === dealer && <DealerIndicator>(dealer)</DealerIndicator>}</HighlightedTd> : <Th key={index}>{player.name}{player.name === dealer && <DealerIndicator>(dealer)</DealerIndicator>}</Th>
+                index === currentPlayerIndex ? <HighlightedTd key={index}>{player.name}{player.name === dealer && <DealerIndicator>(Dealer)</DealerIndicator>}</HighlightedTd> : <Th key={index}>{player.name}{player.name === dealer && <DealerIndicator>(Dealer)</DealerIndicator>}</Th>
               ))}
             </tr>
           </thead>
