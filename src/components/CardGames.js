@@ -227,9 +227,9 @@ function CardGames() {
       )}
       {showTable && (
         <>
-          <button onClick={handleAddRound}>Add Round</button>
+          {!gameOver && <button onClick={handleAddRound}>Add Round</button>}
           <input type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />
-          <button onClick={handleScoreSubmit}>Submit</button>
+          {!gameOver && <button onClick={handleScoreSubmit}>Submit</button>}
           <Table>
           <thead>
             <tr>
