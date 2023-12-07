@@ -56,7 +56,7 @@ const HighlightedPlayerInput = styled(PlayerInput)`
 `;
 
 const HighlightedTd = styled(Td)`
-  background-color: green;
+  background-color: #4caf50;
   color: white; // Change the text color to white for better contrast
 `;
 
