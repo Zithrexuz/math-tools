@@ -159,9 +159,15 @@ function CardGames() {
         }
       }
 
-
+      /*
       if (newTotalScores.some(score => score >= 500)) {
         setGameOver(true);
+      }
+      */
+      if (currentPlayerIndex === players.length - 1) { // Check if all players have had their turn
+        if (newTotalScores.some(score => score >= 500)) {
+          setGameOver(true);
+        }
       }
     }
   };
