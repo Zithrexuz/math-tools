@@ -78,7 +78,7 @@ function CardGames() {
   const [highlightEmptyFields, setHighlightEmptyFields] = useState(false);
   const [roundCount, setRoundCount] = useState(10);
   const [gameOver, setGameOver] = useState(false);
-  const [dealer, setDealer] = useState(null);
+  const [dealer, setDealer] = useState('Player1'); // null
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -196,7 +196,7 @@ function CardGames() {
     setCurrentRoundIndex(0);
     setCurrentScore('');
     setTotalScores(Array(playerCount).fill(0));
-    setDealer(null);
+    setDealer(null); 
   };
 
 
@@ -220,7 +220,8 @@ function CardGames() {
           ))}
           {playerCount > 0 && players.every(player => player && player.name.trim() !== '') && (
           <>
-          <select onChange={handleDealerChange}>
+          {/* <select onChange={handleDealerChange}> */}
+          <select value={dealer} onChange={handleDealerChange}>
             <option value="">Select dealer</option>
             {players.map((player, index) => (
               <option key={index} value={player.name}>{player.name}</option>
