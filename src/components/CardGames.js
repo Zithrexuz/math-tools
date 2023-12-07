@@ -174,7 +174,8 @@ function CardGames() {
   };
   
   const handleDealerChange = (event) => {
-    setDealer(event.target.value);
+    //setDealer(event.target.value); // For option tag with HTML
+    setDealer(event.target.id); // For radio tag with HTML
   };
 
   const handleAddRound = () => {
@@ -221,12 +222,20 @@ function CardGames() {
           {playerCount > 0 && players.every(player => player && player.name.trim() !== '') && (
           <>
           {/* <select onChange={handleDealerChange}> */}
+          {/*
           <select value={dealer} onChange={handleDealerChange}>
             <option value="">Select dealer</option>
             {players.map((player, index) => (
               <option key={index} value={player.name}>{player.name}</option>
             ))}
           </select>
+            */}
+            {players.map((player, index) => (
+              <div key={index}>
+                <input type="radio" id={player.name} name="dealer" checked={dealer === player.name} onChange={handleDealerChange} />
+                <label htmlFor={player.name}>{player.name}</label>
+              </div>
+            ))}
           {playerCount > 0 && <button onClick={handleShowTable}>Go to table</button>}
         </>
       )}
