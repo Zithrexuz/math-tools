@@ -214,6 +214,8 @@ function CardGames() {
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
+          {playerCount > 0 && players.every(player => player && player.name.trim() !== '') && (
+          <>
           <select onChange={handleDealerChange}>
             <option value="">Select dealer</option>
             {players.map((player, index) => (
@@ -222,6 +224,8 @@ function CardGames() {
           </select>
           {playerCount > 0 && <button onClick={handleShowTable}>Go to table</button>}
         </>
+      )}
+      </>
       )}
       {showTable && (
         <>
