@@ -230,6 +230,7 @@ function CardGames() {
             ))}
           </select>
             */}
+            <label>Select Dealer:</label>
             {players.map((player, index) => (
               <div key={index}>
                 <input type="radio" id={player.name} name="dealer" checked={dealer === player.name} onChange={handleDealerChange} />
