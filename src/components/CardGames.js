@@ -90,7 +90,8 @@ function CardGames() {
     count = Math.max(count, 0); // Prevent negative numbers
 
     setPlayerCount(count);
-    setPlayers(new Array(count).fill(null)); // Fill the players array with null values
+    setPlayers(new Array(count).fill().map((_, i) => ({ name: `Player${i + 1}` }))); // Fill the players array with default names
+    //setPlayers(new Array(count).fill(null)); // Fill the players array with null values
   };
 
   const handlePlayerNameChange = (index, event) => {
