@@ -60,6 +60,11 @@ const HighlightedTd = styled(Td)`
   color: white; // Change the text color to white for better contrast
 `;
 
+const DealerIndicator = styled.span`
+  font-size: 0.8em;
+  margin-left: 5px;
+`;
+
 function CardGames() {
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
@@ -73,6 +78,7 @@ function CardGames() {
   const [highlightEmptyFields, setHighlightEmptyFields] = useState(false);
   const [roundCount, setRoundCount] = useState(10);
   const [gameOver, setGameOver] = useState(false);
+  const [dealer, setDealer] = useState(null);
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
@@ -164,6 +170,10 @@ function CardGames() {
     }
   };
   
+  const handleDealerChange = (event) => {
+    setDealer(event.target.value);
+  };
+
   const handleAddRound = () => {
     setRoundCount(roundCount + 1);
     setScores(scores.map(playerScores => [...playerScores, '']));
@@ -204,7 +214,12 @@ function CardGames() {
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
-          {/* <button onClick={handleShowTable}>Go to table</button> */}
+          <select onChange={handleDealerChange}>
+            <option value="">Select dealer</option>
+            {players.map((player, index) => (
+              <option key={index} value={player.name}>{player.name}</option>
+            ))}
+          </select>
           {playerCount > 0 && <button onClick={handleShowTable}>Go to table</button>}
         </>
       )}
@@ -218,7 +233,7 @@ function CardGames() {
             <tr>
               <Th>Round</Th>
               {players.map((player, index) => (
-                index === currentPlayerIndex ? <HighlightedTd key={index}>{player.name}</HighlightedTd> : <Th key={index}>{player.name}</Th>
+                index === currentPlayerIndex ? <HighlightedTd key={index}>{player.name}{player.name === dealer && <DealerIndicator>(dealer)</DealerIndicator>}</HighlightedTd> : <Th key={index}>{player.name}{player.name === dealer && <DealerIndicator>(dealer)</DealerIndicator>}</Th>
               ))}
             </tr>
           </thead>
