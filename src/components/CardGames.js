@@ -82,14 +82,13 @@ function CardGames() {
 
   const handleCreatePlayers = () => {
     setGameStarted(true);
-    //setPlayers(new Array(playerCount).fill({ name: '' })); // Create players here
     setPlayers(players.map(player => player || { name: '' })); // Replace null values with objects with empty name properties
   };
 
   const handlePlayerCountChange = (event) => {
     let count = Math.min(Math.floor(event.target.value), 5); // Limit the number of players to 5
     count = Math.max(count, 0); // Prevent negative numbers
-    //const count = Math.min(event.target.value, 5); // Limit the number of players to 5
+
     setPlayerCount(count);
     setPlayers(new Array(count).fill(null)); // Fill the players array with null values
   };
@@ -140,7 +139,6 @@ function CardGames() {
 
       // Calculate the total score for the current player
       const newTotalScores = [...totalScores];
-      //newTotalScores[currentPlayerIndex] += score;
       newTotalScores[currentPlayerIndex] = (newTotalScores[currentPlayerIndex] || 0) + score; // Adding the previous rounds score.
       setTotalScores(newTotalScores);
 
@@ -209,7 +207,7 @@ function CardGames() {
             ) : (
               <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
             )}
-              {/* <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} isValid={validPlayers[index]} /> */}
+              {/* <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> */}
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </div>
           ))}
@@ -248,9 +246,7 @@ function CardGames() {
                 {players.map((player, index) => (
                   <Td key={index}>
                     <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
-                    {/* <input type="number" placeholder={roundScores[index][i] || 0} readOnly /> */}
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span>
-                    {/* <span>({i === currentRoundIndex ? scores[index][i] || 0 : ''})</span> */}
                   </Td>
                 ))}
               </tr>
