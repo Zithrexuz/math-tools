@@ -65,7 +65,7 @@ const DealerIndicator = styled.span`
   margin-left: 5px;
 `;
 
-const SectionTitle = styled.h3`
+const SectionTitle = styled.h4`
   margin-top: 20px;
 `;
 
@@ -220,6 +220,7 @@ function CardGames() {
       {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
       {gameStarted && !showTable && (
         <>
+          <SectionTitle>Number of Players:</SectionTitle>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
           {Array.from({ length: playerCount }, (_, index) => (
