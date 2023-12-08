@@ -261,7 +261,6 @@ function CardGames() {
               <tr key={i}>
                 {/* <Td>{i + 1}</Td> */}
                 {i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : <Td>{i + 1}</Td>}
-                {!gameOver && <button onClick={handleAddRound}>Add Round</button>}
                 {players.map((player, index) => (
                   <Td key={index}>
                     <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
@@ -271,6 +270,7 @@ function CardGames() {
               </tr>
             ))}
           </tbody>
+          {!gameOver && <button onClick={handleAddRound}>Add Round</button>}
           </Table>
         </>
       )}
