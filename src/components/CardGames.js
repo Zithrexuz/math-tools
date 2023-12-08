@@ -37,12 +37,12 @@ const Table = styled.table`
 `;
 
 const Th = styled.th`
-  border: 1px solid #000; /* This adds a border to your table header cells */
+  border: 1px solid #000; /* This adds a border to my table header cells */
   padding: 10px; /* Add some padding so content isn't right up against the border */
 `;
 
 const Td = styled.td`
-  border: 1px solid #000; /* This adds a border to your table data cells */
+  border: 1px solid #000; /* This adds a border to my table data cells */
   padding: 10px; /* Add some padding so content isn't right up against the border */
 `;
 
@@ -57,7 +57,7 @@ const HighlightedPlayerInput = styled(PlayerInput)`
 
 const HighlightedTd = styled(Td)`
   background-color: #4caf50;
-  color: white; // Change the text color to white for better contrast
+  color: white; // Changed the text color to white for better contrast
 `;
 
 const DealerIndicator = styled.span`
@@ -66,6 +66,7 @@ const DealerIndicator = styled.span`
 `;
 
 function CardGames() {
+  // States
   const [playerCount, setPlayerCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [showTable, setShowTable] = useState(false);
@@ -80,6 +81,7 @@ function CardGames() {
   const [gameOver, setGameOver] = useState(false);
   const [dealer, setDealer] = useState('Player1'); // null
 
+  // Functions
   const handleCreatePlayers = () => {
     setGameStarted(true);
     setPlayers(players.map(player => player || { name: '' })); // Replace null values with objects with empty name properties
@@ -109,7 +111,7 @@ function CardGames() {
     }
   };
 
-  // Add a new state to store the scores
+  // Added a new state to store the scores
   const [scores, setScores] = useState(Array(playerCount).fill().map(() => Array(10).fill('')));
 
   // Update scores state when playerCount changes
@@ -130,7 +132,7 @@ function CardGames() {
 
   const handleScoreSubmit = () => {
     console.log(currentRoundIndex);
-    if (currentScore && currentScore % 5 === 0 && currentRoundIndex < roundCount) { // Check if the input field is not empty, the number is a multiple of 5, there are more rounds, and there are more players /////&& currentPlayerIndex < playerCount
+    if (currentScore && currentScore % 5 === 0 && currentRoundIndex < roundCount) { // Check if the input field is not empty, the number is a multiple of 5, there are more rounds
       const newScores = [...scores];
       const score = parseInt(currentScore);
 
