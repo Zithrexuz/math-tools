@@ -9,15 +9,21 @@ const AppContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #ADD8E6; // Light blue color
+  // background-image: url('https://example.com/path-to-your-image.jpg');
+  // background-size: cover;
 `;
 
 const Title = styled.h1`
   margin-bottom: 20px;
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+  font-family: 'Roboto', sans-serif;
 `;
 
 const Subtitle = styled.h2`
   margin-bottom: 40px;
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+  font-family: 'Roboto', sans-serif;
 `;
 
 function App() {

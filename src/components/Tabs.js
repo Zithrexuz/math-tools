@@ -50,6 +50,8 @@ const TabButton = styled.button`
   font-family: 'Roboto', sans-serif; // Apply the font
   cursor: pointer;
 
+  transition: background-color 0.3s ease; // Smooth transition on hover
+
   &:hover {
     background-color: #777; // Lighter color on hover for a subtle effect
   }
