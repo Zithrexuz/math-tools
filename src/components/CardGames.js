@@ -65,6 +65,12 @@ const DealerIndicator = styled.span`
   margin-left: 5px;
 `;
 
+const PlayerRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 function CardGames() {
   // States
   const [playerCount, setPlayerCount] = useState(0);
@@ -210,16 +216,18 @@ function CardGames() {
       {gameStarted && !showTable && (
         <>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
+          <label>Player Names:</label>
           {Array.from({ length: playerCount }, (_, index) => (
-            <div key={index}>
+            <PlayerRow key={index}> 
               {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
               <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
             ) : (
               <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
             )}
               {/* <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> */}
+              <input type="radio" id={player.name} name="dealer" checked={dealer === player.name} onChange={handleDealerChange} />
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
-            </div>
+            </PlayerRow> //div
           ))}
           {playerCount > 0 && players.every(player => player && player.name.trim() !== '') && (
           <>
