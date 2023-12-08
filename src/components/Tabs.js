@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 /*
 const TabContainer = styled.div`
   position: absolute;
@@ -38,6 +39,7 @@ const TabButton = styled.button`
 `;
 */
 const TabButton = styled.button`
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
   margin: 0 10px; 
   padding: 10px;
   border: none;
@@ -45,6 +47,7 @@ const TabButton = styled.button`
   background-color: #555; // Darker button color
   color: #fff; // Light text color
   font-size: 1em; // Larger font size for better mobile compatibility
+  font-family: 'Roboto', sans-serif; // Apply the font
   cursor: pointer;
 
   &:hover {
