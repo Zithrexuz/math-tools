@@ -6,7 +6,7 @@ import CardGames from './CardGames';
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; // This will center the child elements
   justify-content: center;
   height: 100vh;
   background-color: #202124; // #ADD8E6 Light blue color // #202124 for very dark blue

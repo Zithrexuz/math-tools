@@ -4,6 +4,7 @@ import { MdDelete } from 'react-icons/md';
 
 const Title = styled.h1`
   margin-bottom: 20px;
+  color: #fff;
   font-size: 2.5em; // Larger font size
 
   @media (max-width: 600px) {
@@ -236,8 +237,10 @@ function CardGames() {
 
   return (
     <div>
+    <AppContainer>
     <Title>Point Controller</Title>
-    {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
+    {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create Game</CreateButton>}
+    </AppContainer>
     {gameStarted && !showTable && (
       <>
         {step === 0 && (
