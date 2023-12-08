@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+/*
 const TabContainer = styled.div`
   position: absolute;
   top: 0;
@@ -10,9 +10,20 @@ const TabContainer = styled.div`
   background-color: #f5f5f5;
   padding: 10px 0;
 `;
+*/
+const TabContainer = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #333; // Dark background color
+  padding: 10px 0;
+`;
 
 // 10px margin It's the spacing between tabs
 // border-radius: 5px
+/*
 const TabButton = styled.button`
   margin: 0 10px; 
   padding: 10px;
@@ -23,6 +34,25 @@ const TabButton = styled.button`
 
   &:hover {
     background-color: #ccc;
+  }
+`;
+*/
+const TabButton = styled.button`
+  margin: 0 10px; 
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #555; // Darker button color
+  color: #fff; // Light text color
+  font-size: 1em; // Larger font size for better mobile compatibility
+  cursor: pointer;
+
+  &:hover {
+    background-color: #777; // Lighter color on hover for a subtle effect
+  }
+
+  @media (max-width: 600px) { // Media query for better mobile compatibility
+    font-size: 1.2em; // Even larger font size on small screens
   }
 `;
 
