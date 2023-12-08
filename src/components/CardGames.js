@@ -91,6 +91,8 @@ function CardGames() {
   const [roundCount, setRoundCount] = useState(10);
   const [gameOver, setGameOver] = useState(false);
   const [dealer, setDealer] = useState('Player1'); // null
+  const [step, setStep] = useState(0);
+
 
   // Functions
   const handleCreatePlayers = () => {
@@ -218,10 +220,11 @@ function CardGames() {
     <div>
       <Title>Point Controller</Title>
       {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
-      {gameStarted && !showTable && (
+      {gameStarted && !showTable && step === 0 && (
         <>
           <SectionTitle>Number of Players:</SectionTitle>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
+          <button onClick={() => setStep(1)}>Next</button>
           {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
           {Array.from({ length: playerCount }, (_, index) => (
             <PlayerContainer key={index}>
