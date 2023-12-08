@@ -65,11 +65,16 @@ const DealerIndicator = styled.span`
   margin-left: 5px;
 `;
 
-const PlayerRow = styled.div`
+const SectionTitle = styled.h3`
+  margin-top: 20px;
+`;
+
+const PlayerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
+
 
 function CardGames() {
   // States
@@ -217,15 +222,18 @@ function CardGames() {
         <>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           {Array.from({ length: playerCount }, (_, index) => (
-            <PlayerRow key={index}> 
+            <PlayerContainer key={index}> 
+              <SectionTitle>Player Names:</SectionTitle>
               {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
               <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
             ) : (
               <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
             )}
               {/* <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> */}
+              <input type="radio" id={player.name} name="dealer" checked={dealer === player.name} onChange={handleDealerChange} />
+              <label htmlFor={player.name}>{player.name}</label>
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
-            </PlayerRow> //div
+            </PlayerContainer> //div
           ))}
           {playerCount > 0 && players.every(player => player && player.name.trim() !== '') && (
           <>
