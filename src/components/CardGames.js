@@ -237,14 +237,14 @@ function CardGames() {
                 <label htmlFor={player.name}>{player.name}</label>
               </div>
             ))}
-          {playerCount > 0 && <button onClick={handleShowTable}>Go to table</button>}
+          {playerCount > 0 && <CreateButton onClick={handleShowTable}>Start Game</CreateButton>}
         </>
       )}
       </>
       )}
       {showTable && (
         <>
-          {!gameOver && <button onClick={handleAddRound}>Add Round</button>}
+          {/* !gameOver && <button onClick={handleAddRound}>Add Round</button> */}
           {!gameOver && <input type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />}
           {!gameOver && <button onClick={handleScoreSubmit}>Submit</button>}
           <Table>
@@ -261,6 +261,7 @@ function CardGames() {
               <tr key={i}>
                 {/* <Td>{i + 1}</Td> */}
                 {i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : <Td>{i + 1}</Td>}
+                {!gameOver && <button onClick={handleAddRound}>Add Round</button>}
                 {players.map((player, index) => (
                   <Td key={index}>
                     <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
@@ -277,7 +278,7 @@ function CardGames() {
       <>
         <h2>Game Over!</h2>
         <h3>The winner is {players[totalScores.indexOf(Math.max(...totalScores))].name}!</h3>
-        <button onClick={handleNewGame}>New Game</button>
+        <CreateButton onClick={handleNewGame}>New Game</CreateButton>
       </>
     )}
     </div>
