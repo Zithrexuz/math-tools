@@ -218,35 +218,36 @@ function CardGames() {
 
   return (
     <div>
-      <Title>Point Controller</Title>
-      {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
-      {gameStarted && !showTable && step === 0 && (
-        <>
-          <SectionTitle>Number of Players:</SectionTitle>
-          <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
-          <button onClick={() => setStep(1)}>Next</button>
-          {console.log(step)};
-          {step === 1 && (
+    <Title>Point Controller</Title>
+    {!gameStarted && <CreateButton onClick={handleCreatePlayers}>Create game</CreateButton>}
+    {gameStarted && !showTable && (
+      <>
+        {step === 0 && (
           <>
-          {console.log(step)};
-          {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
-          {Array.from({ length: playerCount }, (_, index) => (
-            <PlayerContainer key={index}>
-              {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
-              <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
-            ) : (
-              <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
-            )}
-              {/* <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> */}
-              <input type="radio" id={players[index].name} name="dealer" checked={dealer === players[index].name} onChange={handleDealerChange} />
-              <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
-            </PlayerContainer> //div
-          ))}
-          {playerCount > 0 && <CreateButton onClick={handleShowTable}>Start Game</CreateButton>}
-        </>
-      )}
+            <SectionTitle>Number of Players:</SectionTitle>
+            <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
+            <button onClick={() => setStep(1)}>Next</button>
+          </>
+        )}
+        {step === 1 && (
+          <>
+            {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
+            {Array.from({ length: playerCount }, (_, index) => (
+              <PlayerContainer key={index}>
+                {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
+                <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
+              ) : (
+                <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
+              )}
+                <input type="radio" id={players[index].name} name="dealer" checked={dealer === players[index].name} onChange={handleDealerChange} />
+                <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
+              </PlayerContainer>
+            ))}
+            {playerCount > 0 && <CreateButton onClick={handleShowTable}>Start Game</CreateButton>}
+          </>
+        )}
       </>
-      )}
+    )}
       {showTable && (
         <>
           {/* !gameOver && <button onClick={handleAddRound}>Add Round</button> */}
