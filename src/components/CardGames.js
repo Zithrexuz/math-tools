@@ -228,6 +228,7 @@ function CardGames() {
           {console.log(step)};
           {step === 1 && (
           <>
+          {console.log(step)};
           {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
           {Array.from({ length: playerCount }, (_, index) => (
             <PlayerContainer key={index}>
