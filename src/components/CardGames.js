@@ -8,7 +8,7 @@ const AppContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #202124;
 `;
 
 const Title = styled.h1`
