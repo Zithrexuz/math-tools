@@ -16,9 +16,9 @@ const AppContainer = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 20px;
-  @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Rowdies:wght@700&display=swap');
-  font-family: 'Kanit', sans-serif;
+  @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
   font-family: 'Rowdies', sans-serif;
+  font-weight: 700;
   font-size: 3.5em; // Adjust the size as needed
 
   @media (max-width: 600px) {
@@ -29,9 +29,9 @@ const Title = styled.h1`
 
 const Subtitle = styled.h2`
   margin-bottom: 40px;
-  @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Rowdies:wght@700&display=swap');
-  font-family: 'Kanit', sans-serif;
+  @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
   font-family: 'Rowdies', sans-serif;
+  font-weight: 700;
   font-size: 3em; // Adjust the size as needed
 
   @media (max-width: 600px) {
@@ -53,7 +53,7 @@ function App() {
     <AppContainer>
       {tab === 'home' && (
         <>
-          <Title>Math tools</Title>
+          <Title>Math Tools</Title>
           <Subtitle>By Zith</Subtitle>
         </>
       )}
