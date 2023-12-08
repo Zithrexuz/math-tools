@@ -230,8 +230,8 @@ function CardGames() {
               <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
             )}
               {/* <PlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} /> */}
-              <input type="radio" id={player.name} name="dealer" checked={dealer === player.name} onChange={handleDealerChange} />
-              <label htmlFor={player.name}>{player.name}</label>
+              <input type="radio" id={players[index].name} name="dealer" checked={dealer === players[index].name} onChange={handleDealerChange} />
+              <label htmlFor={players[index].name}>{players[index].name}</label>
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </PlayerContainer> //div
           ))}
