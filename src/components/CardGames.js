@@ -2,19 +2,25 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { MdDelete } from 'react-icons/md';
 
-const Title = styled.h2`
+const Title = styled.h1`
   margin-bottom: 20px;
+  font-size: 2.5em; // Larger font size
+
+  @media (max-width: 600px) {
+    font-size: 2em; // Adjust the size for mobile devices
+  }
 `;
 
 const CreateButton = styled.button`
   margin-bottom: 20px;
-  padding: 10px 20px;
+  padding: 15px 30px;
   border: none;
   border-radius: 5px;
   background-color: #4caf50;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
+  transition: background-color 0.3s ease; // Smooth transition on hover
 
   &:hover {
     background-color: #45a049;
@@ -23,6 +29,8 @@ const CreateButton = styled.button`
 
 const PlayerInput = styled.input`
   margin-bottom: 10px;
+  padding: 10px; // Padding for a better touch experience on mobile devices
+  border-radius: 5px; // Rounded corners
 `;
 
 const DeleteButton = styled(MdDelete)`
@@ -67,6 +75,11 @@ const DealerIndicator = styled.span`
 
 const SectionTitle = styled.h4`
   margin-top: 20px;
+  font-size: 2em; // Larger font size
+
+  @media (max-width: 600px) {
+    font-size: 1.5em; // Adjust the size for mobile devices
+  }
 `;
 
 const PlayerContainer = styled.div`

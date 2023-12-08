@@ -1,43 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-/*
+
 const TabContainer = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: #f5f5f5;
-  padding: 10px 0;
-`;
-*/
-const TabContainer = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background-color: #333; // Dark background color
+  background-color: #333; // Dark background color // #3c4043 for more of a blueish one or #1f1f1f for more of a dark grey.
   padding: 10px 0;
 `;
 
-// 10px margin It's the spacing between tabs
-// border-radius: 5px
-/*
-const TabButton = styled.button`
-  margin: 0 10px; 
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #ddd;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #ccc;
-  }
-`;
-*/
 const TabButton = styled.button`
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
   margin: 0 10px; 
