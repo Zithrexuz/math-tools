@@ -9,16 +9,17 @@ const AppContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #ADD8E6; // Light blue color
+  background-color: #202124; // #ADD8E6 Light blue color // #202124 for very dark blue
   // background-image: url('https://example.com/path-to-your-image.jpg');
   // background-size: cover;
 `;
 
 const Title = styled.h1`
   margin-bottom: 20px;
-  @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
-  font-family: 'Rowdies', sans-serif;
-  font-weight: 700;
+  color: #fff;
+  @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+  font-family: 'Rubik Mono One', monospace;
+  font-weight: 400;
   font-size: 3.5em; // Adjust the size as needed
 
   @media (max-width: 600px) {
@@ -29,9 +30,10 @@ const Title = styled.h1`
 
 const Subtitle = styled.h2`
   margin-bottom: 40px;
-  @import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
-  font-family: 'Rowdies', sans-serif;
-  font-weight: 700;
+  color: #fff;
+  @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+  font-family: 'Rubik Mono One', monospace;
+  font-weight: 400;
   font-size: 3em; // Adjust the size as needed
 
   @media (max-width: 600px) {

@@ -48,7 +48,7 @@ const TabButton = styled.button`
   color: #fff; // Light text color
   font-size: 1em; // Larger font size for better mobile compatibility
   font-family: 'Roboto', sans-serif; // Apply the font
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
 
   transition: background-color 0.3s ease; // Smooth transition on hover
