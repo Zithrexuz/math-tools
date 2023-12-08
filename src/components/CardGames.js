@@ -212,7 +212,7 @@ function CardGames() {
     setCurrentRoundIndex(0);
     setCurrentScore('');
     setTotalScores(Array(playerCount).fill(0));
-    setDealer(null); 
+    setDealer('Player1');  // null
     setStep(0);
   };
 
