@@ -180,7 +180,11 @@ function CardGames() {
         setGameOver(true);
       }
       */
-      if (currentPlayerIndex === players.length - 1) { // Check if all players have had their turn
+      if (currentPlayerIndex === players.length - 1) { // Check if all players have had their turn (So checks if it's the end of the round.)
+        // Update the dealer
+        const currentDealerIndex = players.findIndex(player => player.name === dealer);
+        const newDealerIndex = (currentDealerIndex + 1) % players.length;
+        setDealer(players[newDealerIndex].name);
         if (newTotalScores.some(score => score >= 500)) {
           setGameOver(true);
         }
