@@ -225,6 +225,7 @@ function CardGames() {
           <SectionTitle>Number of Players:</SectionTitle>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           <button onClick={() => setStep(1)}>Next</button>
+          {console.log(step)};
           {step === 1 && (
           <>
           {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
