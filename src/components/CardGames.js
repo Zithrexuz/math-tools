@@ -225,7 +225,9 @@ function CardGames() {
           <SectionTitle>Number of Players:</SectionTitle>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
           <button onClick={() => setStep(1)}>Next</button>
-          {playerCount > 0 && step === 1 && <SectionTitle>Player Names:</SectionTitle>}
+          {step === 1 && (
+          <>
+          {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
           {Array.from({ length: playerCount }, (_, index) => (
             <PlayerContainer key={index}>
               {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
@@ -238,17 +240,6 @@ function CardGames() {
               <DeleteButton size={20} onClick={() => handlePlayerNameChange(index, { target: { value: '' } })} />
             </PlayerContainer> //div
           ))}
-          {playerCount > 0 && players.every(player => player && player.name.trim() !== '') && (
-          <>
-          {/* <select onChange={handleDealerChange}> */}
-          {/*
-          <select value={dealer} onChange={handleDealerChange}>
-            <option value="">Select dealer</option>
-            {players.map((player, index) => (
-              <option key={index} value={player.name}>{player.name}</option>
-            ))}
-          </select>
-            */}
           {playerCount > 0 && <CreateButton onClick={handleShowTable}>Start Game</CreateButton>}
         </>
       )}
