@@ -105,7 +105,7 @@ function CardGames() {
     if (players.every(player => player && player.name.trim() !== '') && dealer) {
       console.log('Showing table');
       setShowTable(true);
-      setCurrentPlayerIndex(players.findIndex(player => player.name === dealer)); // Set the current player to the dealer
+      //setCurrentPlayerIndex(players.findIndex(player => player.name === dealer)); // Set the current player to the dealer
     }
   };
 
