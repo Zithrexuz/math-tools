@@ -221,7 +221,7 @@ function CardGames() {
       {gameStarted && !showTable && (
         <>
           <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
-          <SectionTitle>Player Names:</SectionTitle>
+          {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
           {Array.from({ length: playerCount }, (_, index) => (
             <PlayerContainer key={index}>
               {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
@@ -245,13 +245,6 @@ function CardGames() {
             ))}
           </select>
             */}
-            <label>Select Dealer:</label>
-            {players.map((player, index) => (
-              <div key={index}>
-                <input type="radio" id={player.name} name="dealer" checked={dealer === player.name} onChange={handleDealerChange} />
-                <label htmlFor={player.name}>{player.name}</label>
-              </div>
-            ))}
           {playerCount > 0 && <CreateButton onClick={handleShowTable}>Start Game</CreateButton>}
         </>
       )}
