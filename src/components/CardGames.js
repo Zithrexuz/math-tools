@@ -129,7 +129,7 @@ const AddRoundButton = styled.button`
 
 const PlayerContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline; // center
   justify-content: space-between;
 `;
 
