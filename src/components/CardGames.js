@@ -95,8 +95,9 @@ const SectionTitle = styled.h4`
 `;
 
 const NextButton = styled.button`
+  margin-top: auto;
   margin-bottom: 20px;
-  padding: 5px 30px;
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
   background-color: #4caf50;
