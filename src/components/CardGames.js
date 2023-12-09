@@ -113,7 +113,7 @@ const NextButton = styled.button`
 
 const AddRoundButton = styled.button`
   margin-bottom: 20px;
-  padding: 15px 30px;
+  padding: 0.5rem 0.5rem;
   border: none;
   border-radius: 5px;
   background-color: #4caf50;
