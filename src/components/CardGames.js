@@ -85,9 +85,15 @@ const ScoreInput = styled.input`
 `;
 */
 
-const ScoreText = styled.span`
+const TotalScoreText = styled.span`
   font-size: 1em;
+  font-weight: bold;
   color: ${props => props.score >= 500 ? 'lightgreen' : 'black'};
+`;
+
+const CurrentScoreText = styled.span`
+  font-size: 0.8em;
+  color: grey;
 `;
 
 const HighlightedPlayerInput = styled(PlayerInput)`
@@ -362,7 +368,9 @@ function CardGames() {
                 {players.map((player, index) => (
                   <Td key={index}>
                     {/* <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} /> */}
-                    <ScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</ScoreText>
+                    {/* <ScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</ScoreText> */}
+                    <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                    <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span>
                   </Td>
                 ))}
