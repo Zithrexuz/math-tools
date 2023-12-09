@@ -93,6 +93,22 @@ const SectionTitle = styled.h4`
   }
 `;
 
+const NextButton = styled.button`
+  margin-bottom: 20px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; // Smooth transition on hover
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
 const PlayerContainer = styled.div`
   display: flex;
   align-items: center;
@@ -256,8 +272,8 @@ function CardGames() {
         {step === 0 && (
           <>
             <SectionTitle>Number of Players:</SectionTitle>
-            <input type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
-            {playerCount > 0 && <button onClick={() => setStep(1)}>Next</button>}
+            <PlayerInput type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
+            {playerCount > 0 && <NextButton onClick={() => setStep(1)}>Next</NextButton>}
           </>
         )}
         {step === 1 && (
