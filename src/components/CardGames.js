@@ -289,7 +289,7 @@ function CardGames() {
         {step === 0 && (
           <>
             <SectionTitle>Number of Players:</SectionTitle>
-            <PlayerInput type="number" min="2" max="5" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
+            <PlayerInput type="number" min="2" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
             {playerCount > 0 && <NextButton onClick={() => setStep(1)}>Next</NextButton>}
           </>
         )}
