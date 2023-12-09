@@ -299,6 +299,8 @@ function CardGames() {
             {playerCount > 0 && <SectionTitle>Player Names:</SectionTitle>}
             {Array.from({ length: playerCount }, (_, index) => (
               <PlayerContainer key={index}>
+                {console.log(highlightEmptyFields)}
+                  {console.log(players[index])}
                 {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
                 <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
               ) : (
