@@ -54,7 +54,8 @@ const Table = styled.table`
   margin-top: 20px;
   border-collapse: collapse; /* This will ensure that borders from adjacent cells are combined into a single border */
 
-  background: linear-gradient(to right, #1e3c72, #2a5298); // Dark blue gradient
+  background: #3c4043;
+  //background: linear-gradient(to right, #1e3c72, #2a5298); // Dark blue gradient
   border-spacing: 10px; // Space between cells
   border-radius: 10px; // Rounded corners
 `;
