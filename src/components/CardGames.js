@@ -182,6 +182,9 @@ function CardGames() {
       console.log('Showing table');
       setShowTable(true);
       //setCurrentPlayerIndex(players.findIndex(player => player.name === dealer)); // Set the current player to the dealer
+    } else {
+      setHighlightEmptyFields(true);
+      setTimeout(() => setHighlightEmptyFields(false), 1000);
     }
   };
 
