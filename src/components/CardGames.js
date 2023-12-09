@@ -85,6 +85,7 @@ const DealerIndicator = styled.span`
 
 const SectionTitle = styled.h4`
   margin-top: 20px;
+  color: #fff;
   font-size: 2em; // Larger font size
 
   @media (max-width: 600px) {
