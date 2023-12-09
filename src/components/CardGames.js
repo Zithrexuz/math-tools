@@ -96,12 +96,12 @@ const SectionTitle = styled.h4`
 
 const NextButton = styled.button`
   margin-bottom: 20px;
-  padding: 15px 30px;
+  padding: 5px 30px;
   border: none;
   border-radius: 5px;
   background-color: #4caf50;
   color: #fff;
-  font-size: 20px;
+  font-size: 23px;
   cursor: pointer;
   transition: background-color 0.3s ease; // Smooth transition on hover
 
