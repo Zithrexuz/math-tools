@@ -58,6 +58,8 @@ const Table = styled.table`
   //background: linear-gradient(to right, #1e3c72, #2a5298); // Dark blue gradient
   border-spacing: 10px; // Space between cells
   border-radius: 10px; // Rounded corners
+
+  border: 2px solid #1e3c72; // Add a border
 `;
 
 const Th = styled.th`
@@ -66,6 +68,10 @@ const Th = styled.th`
 `;
 
 const Td = styled.td`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border: 1px solid #000; /* This adds a border to my table data cells */
   padding: 10px; /* Add some padding so content isn't right up against the border */
   border-radius: 5px;
@@ -371,7 +377,7 @@ function CardGames() {
                     {/* <ScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</ScoreText> */}
                     <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
                     <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
-                    <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span>
+                    {/* <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span> Using the currentScoreText component instead.*/}
                   </Td>
                 ))}
               </tr>
