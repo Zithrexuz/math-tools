@@ -71,7 +71,10 @@ const ScoreInput = styled.input`
 `;
 
 const HighlightedPlayerInput = styled(PlayerInput)`
-  background-color: red;
+  margin-bottom: 10px;
+  padding: 10px; // Padding for a better touch experience on mobile devices
+  border-radius: 5px; // Rounded corners
+  background-color: indianred;
 `;
 
 const HighlightedTd = styled(Td)`
@@ -300,7 +303,6 @@ function CardGames() {
             {Array.from({ length: playerCount }, (_, index) => (
               <PlayerContainer key={index}>
                 {console.log(highlightEmptyFields)}
-                  {console.log(players[index])}
                 {highlightEmptyFields && (!players[index] || players[index].name.trim() === '') ? (
                 <HighlightedPlayerInput type="text" value={players[index]?.name || ''} onChange={(event) => handlePlayerNameChange(index, event)} placeholder={`Enter name of player ${index + 1}`} />
               ) : (
