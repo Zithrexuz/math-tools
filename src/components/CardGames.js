@@ -45,6 +45,7 @@ const PlayerInput = styled.input`
 
 const DeleteButton = styled(MdDelete)`
   margin-left: 10px;
+  color: #fff;
   cursor: pointer;
 `;
 
@@ -100,7 +101,23 @@ const NextButton = styled.button`
   border-radius: 5px;
   background-color: #4caf50;
   color: #fff;
-  font-size: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; // Smooth transition on hover
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const AddRoundButton = styled.button`
+  margin-bottom: 20px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease; // Smooth transition on hover
 
@@ -272,7 +289,7 @@ function CardGames() {
         {step === 0 && (
           <>
             <SectionTitle>Number of Players:</SectionTitle>
-            <PlayerInput type="number" min="1" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
+            <PlayerInput type="number" min="2" max="5" onChange={handlePlayerCountChange} placeholder="Enter number of players" />
             {playerCount > 0 && <NextButton onClick={() => setStep(1)}>Next</NextButton>}
           </>
         )}
@@ -323,7 +340,7 @@ function CardGames() {
               </tr>
             ))}
           </tbody>
-          {!gameOver && <button onClick={handleAddRound}>Add Round</button>}
+          {!gameOver && <AddRoundButton onClick={handleAddRound}>Add Round</AddRoundButton>}
           </Table>
         </>
       )}
