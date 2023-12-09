@@ -53,6 +53,10 @@ const DeleteButton = styled(MdDelete)`
 const Table = styled.table`
   margin-top: 20px;
   border-collapse: collapse; /* This will ensure that borders from adjacent cells are combined into a single border */
+
+  background: linear-gradient(to right, #1e3c72, #2a5298); // Dark blue gradient
+  border-spacing: 10px; // Space between cells
+  border-radius: 10px; // Rounded corners
 `;
 
 const Th = styled.th`
@@ -63,11 +67,26 @@ const Th = styled.th`
 const Td = styled.td`
   border: 1px solid #000; /* This adds a border to my table data cells */
   padding: 10px; /* Add some padding so content isn't right up against the border */
+  border-radius: 5px;
+  background-color: #fff; // Light background color
+
+  font-size: 1em;
+
+  @media (max-width: 600px) {
+    font-size: 1.2em; // Larger font size on small screens
+  }
 `;
 
 // styling for game indicators like (Winner, currentround and currentplayer)
+/*
 const ScoreInput = styled.input`
   background-color: ${props => props.score >= 500 ? 'lightgreen' : 'white'};
+`;
+*/
+
+const ScoreText = styled.span`
+  font-size: 1em;
+  color: ${props => props.score >= 500 ? 'lightgreen' : 'black'};
 `;
 
 const HighlightedPlayerInput = styled(PlayerInput)`
@@ -341,7 +360,8 @@ function CardGames() {
                 {i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : <Td>{i + 1}</Td>}
                 {players.map((player, index) => (
                   <Td key={index}>
-                    <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} />
+                    {/* <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} /> */}
+                    <ScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</ScoreText>
                     <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span>
                   </Td>
                 ))}
