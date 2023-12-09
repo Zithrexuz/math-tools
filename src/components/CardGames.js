@@ -62,16 +62,19 @@ const Table = styled.table`
   border: 2px solid #1e3c72; // Add a border
 `;
 
+const CellContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+
 const Th = styled.th`
   border: 1px solid #000; /* This adds a border to my table header cells */
   padding: 10px; /* Add some padding so content isn't right up against the border */
 `;
 
 const Td = styled.td`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   border: 1px solid #000; /* This adds a border to my table data cells */
   padding: 10px; /* Add some padding so content isn't right up against the border */
   border-radius: 5px;
@@ -375,8 +378,10 @@ function CardGames() {
                   <Td key={index}>
                     {/* <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} /> */}
                     {/* <ScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</ScoreText> */}
+                    <CellContent>
                     <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
                     <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                    </CellContent>
                     {/* <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span> Using the currentScoreText component instead.*/}
                   </Td>
                 ))}
