@@ -59,7 +59,7 @@ const Table = styled.table`
   border-spacing: 10px; // Space between cells
   border-radius: 10px; // Rounded corners
 
-  border: 2px solid #1e3c72; // Add a border
+  border: 5px solid #757575; // Add a border
 `;
 
 const CellContent = styled.div`
@@ -72,6 +72,7 @@ const CellContent = styled.div`
 const Th = styled.th`
   border: 1px solid #000; /* This adds a border to my table header cells */
   padding: 10px; /* Add some padding so content isn't right up against the border */
+  color: #fff; // White text color
 `;
 
 const Td = styled.td`
@@ -114,12 +115,18 @@ const HighlightedPlayerInput = styled(PlayerInput)`
 
 const HighlightedTd = styled(Td)`
   background-color: #4caf50;
-  color: white; // Changed the text color to white for better contrast
+  //color: white; // Changed the text color to white for better contrast
+  color: #fff; // White text color
 `;
 
 const DealerIndicator = styled.span`
   font-size: 0.8em;
   margin-left: 5px;
+  color: #fff; // White text color
+`;
+
+const WinningTd = styled(Td)`
+  background-color: lightgreen; // Light green background color
 `;
 
 const SectionTitle = styled.h4`
@@ -375,15 +382,17 @@ function CardGames() {
                 {/* <Td>{i + 1}</Td> */}
                 {i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : <Td>{i + 1}</Td>}
                 {players.map((player, index) => (
-                  <Td key={index}>
-                    {/* <ScoreInput type="number" placeholder={roundScores[index][i] || 0} readOnly score={roundScores[index][i] || 0} /> */}
-                    {/* <ScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</ScoreText> */}
-                    <CellContent>
-                    <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
-                    <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
-                    </CellContent>
-                    {/* <span>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</span> Using the currentScoreText component instead.*/}
-                  </Td>
+                  index === totalScores.indexOf(Math.max(...totalScores)) ? (
+                    <WinningTd key={index}>
+                      <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                      <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                    </WinningTd>
+                  ) : (
+                    <Td key={index}>
+                      <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                      <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                    </Td>
+                  )
                 ))}
               </tr>
             ))}
