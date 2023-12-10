@@ -384,10 +384,8 @@ function CardGames() {
                 {players.map((player, index) => (
                   index === totalScores.indexOf(Math.max(...totalScores)) ? (
                     <WinningTd key={index}>
-                      <CellContent>
-                        <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
-                        <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
-                      </CellContent>
+                      <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                      <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
                     </WinningTd>
                   ) : (
                     <Td key={index}>
