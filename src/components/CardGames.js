@@ -374,7 +374,7 @@ function CardGames() {
       {showTable && (
         <>
           {/* !gameOver && <button onClick={handleAddRound}>Add Round</button> */}
-          {!gameOver && <input type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />}
+          {!gameOver && <PlayerInput type="number" min="-1000" max="1000" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />}
           {!gameOver && <button onClick={handleScoreSubmit}>Submit</button>}
           <Table>
           <thead>
