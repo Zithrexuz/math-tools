@@ -229,6 +229,7 @@ function CardGames() {
   const [gameOver, setGameOver] = useState(false);
   const [dealer, setDealer] = useState('Player1'); // null
   const [step, setStep] = useState(0);
+  const [gameId, setGameId] = useState(0); // Add a new state variable
 
 
   // Functions
@@ -365,6 +366,7 @@ function CardGames() {
     setTotalScores(Array(playerCount).fill(0));
     setDealer('Player1');  // null
     setStep(0);
+    setGameId(gameId + 1); // Increment gameId to force a re-render of the table
   };
 
 
@@ -409,7 +411,7 @@ function CardGames() {
           {!gameOver && <PlayerInput type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />}
           {!gameOver && <button onClick={handleScoreSubmit}>Submit</button>}
           <TableContainer>
-            <Table>
+            <Table key={gameId}>
             <thead>
               <tr>
                 <Th>Round</Th>
