@@ -196,7 +196,6 @@ const PlayerContainer = styled.div`
   justify-content: space-between;
 `;
 
-
 const GameOverScreen = styled.div`
   position: fixed;
   top: 0;
@@ -204,6 +203,7 @@ const GameOverScreen = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column; // Stack child elements vertically
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5); // Semi-transparent black background
@@ -458,13 +458,11 @@ function CardGames() {
         </>
       )}
       {gameOver && (
-      <>
         <GameOverScreen>
           <h2>Game Over!</h2>
           <h3>The winner is {players[totalScores.indexOf(Math.max(...totalScores))].name}!</h3>
           <CreateButton onClick={handleNewGame}>New Game</CreateButton>
         </GameOverScreen>
-      </>
     )}
     </div>
   );
