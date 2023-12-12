@@ -278,6 +278,9 @@ function CardGames() {
     setRoundScores(Array(playerCount).fill().map(() => Array(10).fill('')));
   }, [playerCount]);
 
+  useEffect(() => {
+    setTotalScores(roundScores.map(scores => scores.reduce((a, b) => a + (b || 0), 0)));
+  }, [roundScores, gameId]); // Add gameId as a dependency
   
   const handleScoreChange = (event) => {
     //setCurrentScore(event.target.value);
