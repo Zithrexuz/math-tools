@@ -52,6 +52,7 @@ const DeleteButton = styled(MdDelete)`
 
 const Table = styled.table`
   margin-top: 20px;
+  font-size: 1em;
   border-collapse: collapse; /* This will ensure that borders from adjacent cells are combined into a single border */
 
   background: #3c4043;
@@ -60,6 +61,14 @@ const Table = styled.table`
   border-radius: 10px; // Rounded corners
 
   border: 5px solid #757575; // Add a border
+
+  @media (max-width: 600px) {
+    font-size: 0.8em; // Smaller font size on small screens
+  }
+`;
+
+const TableContainer = styled.div`
+  overflow-x: auto;
 `;
 
 const CellContent = styled.div`
@@ -185,6 +194,22 @@ const PlayerContainer = styled.div`
   display: flex;
   align-items: baseline; // center
   justify-content: space-between;
+`;
+
+
+const GameOverScreen = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); // Semi-transparent black background
+  color: #fff; // White text color
+  font-size: 2em; // Large font size
+  text-align: center; // Center the text
 `;
 
 
@@ -383,58 +408,62 @@ function CardGames() {
           {/* !gameOver && <button onClick={handleAddRound}>Add Round</button> */}
           {!gameOver && <PlayerInput type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />}
           {!gameOver && <button onClick={handleScoreSubmit}>Submit</button>}
-          <Table>
-          <thead>
-            <tr>
-              <Th>Round</Th>
-              {players.map((player, index) => (
-                index === currentPlayerIndex ? <HighlightedTd key={index}>{player.name}{player.name === dealer && <DealerIndicator>(Dealer)</DealerIndicator>}</HighlightedTd> : <Th key={index}>{player.name}{player.name === dealer && <DealerIndicator>(Dealer)</DealerIndicator>}</Th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from({ length: roundCount }, (_, i) => (
-              <tr key={i}>
-                {/* <Td>{i + 1}</Td> */}
-                {i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : <Td>{i + 1}</Td>}
+          <TableContainer>
+            <Table>
+            <thead>
+              <tr>
+                <Th>Round</Th>
                 {players.map((player, index) => (
-                  index === totalScores.indexOf(Math.max(...totalScores)) ? (
-                    <WinningTd key={index}>
-                      <CellContent>
-                        <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
-                        <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
-                      </CellContent>
-                    </WinningTd>
-                  ) : (
-                    roundScores[index][i] >= 500 ? (
-                      <Score500Td key={index}>
-                        <CellContent>
-                          <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
-                          <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
-                        </CellContent>
-                      </Score500Td>
-                    ) : (
-                      <Td key={index}>
-                        <CellContent>
-                          <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
-                          <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
-                        </CellContent>
-                      </Td>
-                    )
-                  )
+                  index === currentPlayerIndex ? <HighlightedTd key={index}>{player.name}{player.name === dealer && <DealerIndicator>(Dealer)</DealerIndicator>}</HighlightedTd> : <Th key={index}>{player.name}{player.name === dealer && <DealerIndicator>(Dealer)</DealerIndicator>}</Th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-          {!gameOver && <AddRoundButton onClick={handleAddRound}>Add Round</AddRoundButton>}
-          </Table>
+            </thead>
+            <tbody>
+              {Array.from({ length: roundCount }, (_, i) => (
+                <tr key={i}>
+                  {/* <Td>{i + 1}</Td> */}
+                  {i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : <Td>{i + 1}</Td>}
+                  {players.map((player, index) => (
+                    index === totalScores.indexOf(Math.max(...totalScores)) ? (
+                      <WinningTd key={index}>
+                        <CellContent>
+                          <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                          <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                        </CellContent>
+                      </WinningTd>
+                    ) : (
+                      roundScores[index][i] >= 500 ? (
+                        <Score500Td key={index}>
+                          <CellContent>
+                            <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                            <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                          </CellContent>
+                        </Score500Td>
+                      ) : (
+                        <Td key={index}>
+                          <CellContent>
+                            <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                            <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                          </CellContent>
+                        </Td>
+                      )
+                    )
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+            {!gameOver && <AddRoundButton onClick={handleAddRound}>Add Round</AddRoundButton>}
+            </Table>
+          </TableContainer>
         </>
       )}
       {gameOver && (
       <>
-        <h2>Game Over!</h2>
-        <h3>The winner is {players[totalScores.indexOf(Math.max(...totalScores))].name}!</h3>
-        <CreateButton onClick={handleNewGame}>New Game</CreateButton>
+        <GameOverScreen>
+          <h2>Game Over!</h2>
+          <h3>The winner is {players[totalScores.indexOf(Math.max(...totalScores))].name}!</h3>
+          <CreateButton onClick={handleNewGame}>New Game</CreateButton>
+        </GameOverScreen>
       </>
     )}
     </div>
