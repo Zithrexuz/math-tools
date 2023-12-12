@@ -98,7 +98,8 @@ const ScoreInput = styled.input`
 const TotalScoreText = styled.span`
   font-size: 1em;
   font-weight: bold;
-  color: ${props => props.score >= 500 ? 'lightgreen' : 'black'};
+  color: black;
+  //color: ${props => props.score >= 500 ? 'lightgreen' : 'black'};
 `;
 
 const CurrentScoreText = styled.span`
@@ -392,19 +393,25 @@ function CardGames() {
                 {players.map((player, index) => (
                   index === totalScores.indexOf(Math.max(...totalScores)) ? (
                     <WinningTd key={index}>
-                      <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
-                      <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                      <CellContent>
+                        <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                        <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                      </CellContent>
                     </WinningTd>
                   ) : (
                     roundScores[index][i] >= 500 ? (
                       <Score500Td key={index}>
-                        <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
-                        <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                        <CellContent>
+                          <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                          <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                        </CellContent>
                       </Score500Td>
                     ) : (
                       <Td key={index}>
-                        <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
-                        <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                        <CellContent>
+                          <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                          <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                        </CellContent>
                       </Td>
                     )
                   )
