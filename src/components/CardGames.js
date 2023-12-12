@@ -369,6 +369,7 @@ function CardGames() {
     setTotalScores(Array(playerCount).fill(0));
     setDealer('Player1');  // null
     setStep(0);
+    console.log(gameId);
     setGameId(gameId + 1); // Increment gameId to force a re-render of the table
   };
 
@@ -415,6 +416,7 @@ function CardGames() {
           {!gameOver && <button onClick={handleScoreSubmit}>Submit</button>}
           <TableContainer>
             <Table key={gameId}>
+            {console.log(gameId)}
             <thead>
               <tr>
                 <Th>Round</Th>
