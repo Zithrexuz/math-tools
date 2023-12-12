@@ -125,9 +125,17 @@ const DealerIndicator = styled.span`
   color: #fff; // White text color
 `;
 
+
 const WinningTd = styled(Td)`
   background-color: lightgreen; // Light green background color
+  color: black; // Black text color
 `;
+
+const Score500Td = styled(Td)`
+  background-color: lightgreen; // Light green background color
+  color: black; // Black text color
+`;
+
 
 const SectionTitle = styled.h4`
   margin-top: 20px;
@@ -388,12 +396,17 @@ function CardGames() {
                       <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
                     </WinningTd>
                   ) : (
-                    <Td key={index}>
-                      <CellContent>
+                    roundScores[index][i] >= 500 ? (
+                      <Score500Td key={index}>
                         <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
                         <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
-                      </CellContent>
-                    </Td>
+                      </Score500Td>
+                    ) : (
+                      <Td key={index}>
+                        <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
+                        <CurrentScoreText>({i <= currentRoundIndex ? scores[index][i] || 0 : ' '})</CurrentScoreText>
+                      </Td>
+                    )
                   )
                 ))}
               </tr>
