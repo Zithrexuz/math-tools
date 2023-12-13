@@ -23,7 +23,7 @@ const Title = styled.h1`
 
 const CreateButton = styled.button`
   margin-bottom: 20px;
-  padding: 15px 30px;
+  padding: 15px 45px;
   border: none;
   border-radius: 5px;
   background-color: #4caf50;
@@ -160,12 +160,29 @@ const SectionTitle = styled.h4`
 const NextButton = styled.button`
   margin-top: auto;
   margin-bottom: 20px;
-  padding: 0.5rem 1rem;
+  padding: 0.45em 1em;
   border: none;
   border-radius: 5px;
   background-color: #4caf50;
   color: #fff;
-  font-size: 23px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease; // Smooth transition on hover
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const SubmitButton = styled.button`
+  margin-top: auto;
+  margin-bottom: 20px;
+  padding: 0.45em 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s ease; // Smooth transition on hover
 
@@ -417,7 +434,7 @@ useEffect(() => {
         <>
           {/* !gameOver && <button onClick={handleAddRound}>Add Round</button> */}
           {!gameOver && <PlayerInput type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />}
-          {!gameOver && <button onClick={handleScoreSubmit}>Submit</button>}
+          {!gameOver && <SubmitButton onClick={handleScoreSubmit}>Submit</SubmitButton>}
           <TableContainer>
             <Table>
             <thead>
