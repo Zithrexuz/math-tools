@@ -229,7 +229,7 @@ function CardGames() {
   const [gameOver, setGameOver] = useState(false);
   const [dealer, setDealer] = useState('Player1'); // null
   const [step, setStep] = useState(0);
-  const [gameId, setGameId] = useState(0); // Add a new state variable
+  const [winningPlayerIndex, setWinningPlayerIndex] = useState(null);
 
 
   // Functions
@@ -277,12 +277,16 @@ function CardGames() {
   useEffect(() => {
     setRoundScores(Array(playerCount).fill().map(() => Array(10).fill('')));
   }, [playerCount]);
+
+
+  // Update winningPlayerIndex when the game is over
+useEffect(() => {
+  if (gameOver) {
+    setWinningPlayerIndex(totalScores.indexOf(Math.max(...totalScores)));
+  }
+}, [gameOver, totalScores]);
+
   
-  /*
-  useEffect(() => {
-    setTotalScores(roundScores.map(scores => scores.reduce((a, b) => a + (b || 0), 0)));
-  }, [roundScores, gameId]); // Add gameId as a dependency
-  */
   const handleScoreChange = (event) => {
     //setCurrentScore(event.target.value);
     let value = event.target.value;
@@ -370,7 +374,7 @@ function CardGames() {
     setTotalScores(Array(playerCount).fill(0));
     setDealer('Player1');  // null
     setStep(0);
-    setGameId(gameId + 1); // Increment gameId to force a re-render of the table
+    setWinningPlayerIndex(null);
   };
 
 
@@ -415,8 +419,7 @@ function CardGames() {
           {!gameOver && <PlayerInput type="number" value={currentScore} onChange={handleScoreChange} placeholder={`Enter points for ${players[currentPlayerIndex]?.name}`} />}
           {!gameOver && <button onClick={handleScoreSubmit}>Submit</button>}
           <TableContainer>
-            <Table key={gameId}>
-            {console.log(gameId)}
+            <Table>
             <thead>
               <tr>
                 <Th>Round</Th>
@@ -431,7 +434,7 @@ function CardGames() {
                   {/* <Td>{i + 1}</Td> */}
                   {i === currentRoundIndex ? <HighlightedTd>{i + 1}</HighlightedTd> : <Td>{i + 1}</Td>}
                   {players.map((player, index) => (
-                    index === totalScores.indexOf(Math.max(...totalScores)) ? (
+                    index === winningPlayerIndex ? (
                       <WinningTd key={index}>
                         <CellContent>
                           <TotalScoreText score={roundScores[index][i] || 0}>{roundScores[index][i] || 0}</TotalScoreText>
